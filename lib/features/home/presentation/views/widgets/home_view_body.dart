@@ -4,9 +4,8 @@ import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/core/utils/my_text_styles.dart';
-
+import 'package:route_it/featuers/home/presentation/views/widgets/home_header.dart';
 import 'package:route_it/featuers/home/presentation/views/widgets/home_welcome_card.dart';
-import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
