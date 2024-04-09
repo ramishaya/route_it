@@ -15,7 +15,6 @@ abstract class AppRouter {
           BlocProvider<BottomNavBarCubit>(
             create: (context) => BottomNavBarCubit(),
           )
-         
         ],
         child: const HomeView(),
       ),
