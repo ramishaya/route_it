@@ -24,7 +24,7 @@ class CustomButtomNavBar extends StatelessWidget {
       height: size.height * 0.07,
       width: 50,
       decoration: BoxDecoration(
-          color: secondaryColor.withOpacity(0.5),
+          color: lightPrimaryColor.withOpacity(0.5),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(.15),
