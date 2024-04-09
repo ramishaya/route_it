@@ -15,11 +15,12 @@ Widget defaultButton({
   height: 50.0,
   width : width,
   child: MaterialButton(
-    highlightColor: Colors.transparent,
+    focusColor: primaryColor,
+    highlightColor: primaryColor,
     onPressed: (){
       function();
     },
-    splashColor: Colors.transparent,
+    splashColor: primaryColor,
     child: Text(
       isUpperCase? text.toUpperCase() : text,
       style: TextStyle(

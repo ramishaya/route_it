@@ -7,7 +7,8 @@ import 'package:route_it/features/register/views/register_view1.dart';
 import 'package:route_it/features/register/views/register_view2.dart';
 
 // this class handels the routes in our app
-abstract class AppRouter {
+abstract class AppRouter
+{
   static const kHomeView = "/kHomeView";
   static const kLoginView= "/";
   static const kRegisterView1 = '/kRegisterView1' ;
