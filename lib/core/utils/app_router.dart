@@ -18,6 +18,9 @@ abstract class AppRouter {
         ],
         child: const HomeView(),
       ),
+    ),
+    GoRoute(path: "hdgh",
+    
     )
   ]);
 }
