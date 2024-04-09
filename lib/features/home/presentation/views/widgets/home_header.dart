@@ -39,16 +39,16 @@ class HomeHeader extends StatelessWidget {
                 child: Icon(Iconsax.notification_bing),
               ),
             ),
-
-            // here we will use the notifications
           ],
         ),
-        SizedBox(height: size.height * 0.001),
+        // SizedBox(height: size.height * 0.001),
         // here we print the user name that comes from the login page
         Text(
           userName,
           style: const TextStyle(
-              color: textOnPrimaryColor, fontSize: MyTextStyles.subTitleSize),
+              color: textOnPrimaryColor,
+              fontSize: MyTextStyles.subTitleSize,
+          ),
         ),
       ],
     );
