@@ -15,6 +15,10 @@ abstract class AppRouter {
           BlocProvider<BottomNavBarCubit>(
             create: (context) => BottomNavBarCubit(),
           )
+          GoRoute(
+            path: "taim",
+            builder: (context,state)=>Text("")
+          ),
         ],
         child: const HomeView(),
       ),
