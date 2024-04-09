@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, unnecessary_this
+// ignore_for_file: library_private_types_in_public_api, unnecessary_this, prefer_const_constructors
 
 import 'dart:io';
 
@@ -23,19 +23,19 @@ class _RegisterView2State extends State<RegisterView2> {
         ButtonBar(
           children: <Widget>[
             IconButton(
-              icon: const Icon(Icons.photo_camera),
+              icon: Icon(Icons.photo_camera),
               onPressed: () async => _pickImageFromCamera(),
               tooltip: 'Shoot picture',
             ),
             IconButton(
-              icon: const Icon(Icons.photo),
+              icon: Icon(Icons.photo),
               onPressed: () async => _pickImageFromGallery(),
               tooltip: 'Pick from gallery',
             ),
           ],
         ),
         if (this._imageFile == null)
-          const Placeholder()
+          Placeholder()
         else
           Image.file(this._imageFile!),
       ],

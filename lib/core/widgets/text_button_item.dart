@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 

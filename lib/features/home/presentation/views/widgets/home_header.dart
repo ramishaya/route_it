@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:route_it/core/widgets/circlar_icon_item.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/my_text_styles.dart';
@@ -23,26 +26,25 @@ class HomeHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               "Welcome Back",
               style: MyTextStyles.titleStyle
             ),
-            InkWell(
-              borderRadius: BorderRadius.circular(10),
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              highlightColor: lightPrimaryColor,
-              onTap: onTapFunction,
-              child: const CircleAvatar(
-                radius: 20,
-                backgroundColor: lightPrimaryColor,
-                child: Icon(Iconsax.notification_bing),
-              ),
-            ),
+            // InkWell(
+            //   borderRadius: BorderRadius.circular(10),
+            //   splashColor: Colors.transparent,
+            //   focusColor: Colors.transparent,
+            //   highlightColor: lightPrimaryColor,
+            //   onTap: onTapFunction,
+            //   child: const CircleAvatar(
+            //     radius: 20,
+            //     backgroundColor: lightPrimaryColor,
+            //     child: Icon(Iconsax.notification_bing),
+            //   ),
+            // ),
+            buildCirclarIconItem(function: onTapFunction , icon: Icon(Iconsax.notification)),
           ],
         ),
-        // SizedBox(height: size.height * 0.001),
-        // here we print the user name that comes from the login page
         Text(
           userName,
           style: const TextStyle(
