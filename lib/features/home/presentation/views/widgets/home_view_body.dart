@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +10,15 @@ import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/core/utils/my_text_styles.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_welcome_card.dart';
+
+import '../../../../../core/widgets/default_height.dart';
+
+List<Color> cardColors = [
+  Color(0XFFfa7921),
+  Color(0XFFffb7ff),
+  Color(0XFF3bf4fb),
+  Color(0XFFcaff8a)
+];
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -32,9 +43,9 @@ class HomeViewBody extends StatelessWidget {
                 //! here we Navigate to the Navigations Screen
               },
             ),
-            SizedBox(height: size.height * 0.03),
+            DefaultHeight(size: size, height: 0.03),
             HomeWelcomeCard(size: size),
-            SizedBox(height: size.height * 0.03),
+            DefaultHeight(size: size, height: 0.03),
 
             Text(
               "Technologies",
@@ -42,7 +53,7 @@ class HomeViewBody extends StatelessWidget {
                   fontSize: MyTextStyles.titleSize,
                   fontWeight: MyTextStyles.titleWeight),
             ),
-            SizedBox(height: size.height * 0.03),
+            DefaultHeight(size: size, height: 0.03),
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -50,7 +61,7 @@ class HomeViewBody extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: size.width * 0.035,
-                mainAxisSpacing: size.height * 0.02,
+                mainAxisSpacing: size.width * 0.035,
               ),
               itemBuilder: (context, index) {
                 return GestureDetector(
@@ -61,10 +72,11 @@ class HomeViewBody extends StatelessWidget {
                   },
                   child: Container(
                     padding: const EdgeInsets.all(10),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       gradient: LinearGradient(colors: [
-                        Color(0XFF3e3367),
-                        Color(0XFF746d93),
+                        cardColors[index],
+                        lightPrimaryColor
+                        
                       ]),
                       borderRadius: BorderRadius.all(Radius.circular(25)),
                       color: lightPrimaryColor,
@@ -73,8 +85,8 @@ class HomeViewBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                            width: 50,
-                            height: 50,
+                            width: 60,
+                            height: 60,
                             child: index == 3
                                 ? Image.asset(
                                     AssetsData.categoryImg2,
@@ -85,7 +97,7 @@ class HomeViewBody extends StatelessWidget {
                                     fit: BoxFit.cover,
                                   )),
                         SizedBox(
-                          height: size.height * 0.04,
+                          height: size.height * 0.02,
                         ),
                         index == 3
                             ? Text(
@@ -104,7 +116,7 @@ class HomeViewBody extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: size.height * 0.03),
+            DefaultHeight(size: size, height: 0.03),
 
             Text(
               "Trending",
