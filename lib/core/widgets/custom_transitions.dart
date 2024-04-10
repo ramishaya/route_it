@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-// this class is for handling and managing the pages transitions in the app like animated transition etc...
 class CustomTransitions {
   static Widget slideTransition(
     BuildContext context,
