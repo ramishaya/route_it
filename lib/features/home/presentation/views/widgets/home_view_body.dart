@@ -8,17 +8,12 @@ import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
 import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/core/utils/my_text_styles.dart';
+import 'package:route_it/core/widgets/grid_cards_builder.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_welcome_card.dart';
 
-import '../../../../../core/widgets/default_height.dart';
+import '../../../../../core/widgets/default_height_item.dart';
 
-List<Color> cardColors = [
-  Color(0XFFfa7921),
-  Color(0XFFffb7ff),
-  Color(0XFF3bf4fb),
-  Color(0XFFcaff8a)
-];
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -33,96 +28,34 @@ class HomeViewBody extends StatelessWidget {
             horizontal: size.width * horizintalMargin,
             vertical: size.height * verticalMargin),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HomeHeader(
               size: size,
               userName: "Rami Shaya",
               onTapFunction: () {
-                //! here we Navigate to the Navigations Screen
+                //! here we Navigate to the notifications Screen
               },
             ),
-            DefaultHeight(size: size, height: 0.03),
+            DefaultHeightItem(size: size, height: 0.03),
             HomeWelcomeCard(size: size),
-            DefaultHeight(size: size, height: 0.03),
+            DefaultHeightItem(size: size, height: 0.03),
 
             Text(
               "Technologies",
               style: GoogleFonts.lato(
                   fontSize: MyTextStyles.titleSize,
-                  fontWeight: MyTextStyles.titleWeight),
+                  fontWeight: FontWeight.bold),
             ),
-            DefaultHeight(size: size, height: 0.03),
-            GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 4,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: size.width * 0.035,
-                mainAxisSpacing: size.width * 0.035,
-              ),
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    if (index == 3) {
-                      GoRouter.of(context).push(AppRouter.kDomainsView);
-                    }
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        cardColors[index],
-                        lightPrimaryColor
-                        
-                      ]),
-                      borderRadius: BorderRadius.all(Radius.circular(25)),
-                      color: lightPrimaryColor,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                            width: 60,
-                            height: 60,
-                            child: index == 3
-                                ? Image.asset(
-                                    AssetsData.categoryImg2,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Image.asset(
-                                    AssetsData.categoryImg,
-                                    fit: BoxFit.cover,
-                                  )),
-                        SizedBox(
-                          height: size.height * 0.02,
-                        ),
-                        index == 3
-                            ? Text(
-                                "Explore",
-                                style: GoogleFonts.lato(
-                                    fontSize: MyTextStyles.subTitleSize),
-                              )
-                            : Text(
-                                "Front End",
-                                style: GoogleFonts.lato(
-                                    fontSize: MyTextStyles.subTitleSize),
-                              )
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-            DefaultHeight(size: size, height: 0.03),
+            DefaultHeightItem(size: size, height: 0.03),
+            GridCardsBuilder(size: size),
+            DefaultHeightItem(size: size, height: 0.03),
 
             Text(
               "Trending",
               style: GoogleFonts.lato(
                   fontSize: MyTextStyles.titleSize,
-                  fontWeight: MyTextStyles.titleWeight),
+                  fontWeight: FontWeight.bold),
             ),
 
             //  SizedBox(

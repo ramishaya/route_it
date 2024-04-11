@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
@@ -20,59 +21,65 @@ class CustomButtomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(size.width * horizintalMargin),
-      height: size.height * 0.07,
-      width: 50,
+      height: size.width * .155,
       decoration: BoxDecoration(
-          color: lightPrimaryColor.withOpacity(0.5),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black.withOpacity(.15),
-                blurRadius: 30,
-                offset: const Offset(0, 10)),
-          ],
-          borderRadius: BorderRadius.circular(50)),
+        color: lightPrimaryColor,
+        boxShadow: [
+          BoxShadow(
+            //! reset the shadow color later
+            color: Colors.grey.withOpacity(.15),
+            blurRadius: 30,
+            offset: const Offset(0, 10),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(curv),
+      ),
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: listOfIcons.length,
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: size.width * 0.14),
-        itemBuilder: (context, index) {
-          return InkWell(
-              onTap: () {
-                BlocProvider.of<BottomNavBarCubit>(context).tabChange(index);
-              },
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 1500),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    margin: EdgeInsets.only(
-                      bottom: index == currentIndex ? 0 : size.width * .029,
-                      right: size.width * .0422,
-                      left: size.width * .0422,
-                    ),
-                    width: size.width * .128,
-                    height: index == currentIndex ? size.width * .014 : 0,
-                    decoration: const BoxDecoration(
-                      color: secondaryColor2,
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(10),
+        padding: EdgeInsets.symmetric(horizontal: size.width * .024),
+        itemBuilder: (context, index) => Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: size.width * horizintalMargin),
+          child: InkWell(
+            onTap: () {
+              BlocProvider.of<BottomNavBarCubit>(context).tabChange(index);
+            },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: size.width * .2125,
+                  child: Center(
+                    child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      height: index == currentIndex ? size.width * .12 : 0,
+                      width: index == currentIndex ? size.width * .2125 : 0,
+                      decoration: BoxDecoration(
+                        color: index == currentIndex
+                            ? Colors.white.withOpacity(.2)
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(curv),
                       ),
                     ),
                   ),
-                  Icon(
+                ),
+                Container(
+                  width: size.width * .2125,
+                  alignment: Alignment.center,
+                  child: Icon(
                     listOfIcons[index],
                     size: size.width * .076,
-                    color: index == currentIndex
-                        ? secondaryColor2
-                        : Colors.black38,
+                    color:
+                        index == currentIndex ? Colors.white : Colors.black26,
                   ),
-                  SizedBox(height: size.width * .03),
-                ],
-              ));
-        },
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

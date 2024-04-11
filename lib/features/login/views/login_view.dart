@@ -85,6 +85,7 @@ class LoginView extends StatelessWidget {
                       ),
                       SizedBox(height: size.height * .03,),
                       defaultButton(
+                        color: lightPrimaryColor,
                         function: (){
                           GoRouter.of(context).push(AppRouter.kHomeView);
                         },

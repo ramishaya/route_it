@@ -15,3 +15,10 @@ const Color textOnPrimaryColor = Colors.white;
 const Color titleColor = Colors.white;
 
 const Color subTitleColor = Colors.grey;
+
+List<Color> cardColors = const [
+  Color(0XFF554484),
+  Color(0XFF00C8A2),
+  Color(0XFF0091BE),
+  Color(0XFF004082)
+];

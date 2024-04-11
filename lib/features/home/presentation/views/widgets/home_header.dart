@@ -23,20 +23,20 @@ class HomeHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              "Welcome Back",
-              style: MyTextStyles.titleStyle
-            ),
+            const Text("Welcome Back", style: MyTextStyles.titleStyle),
             InkWell(
               borderRadius: BorderRadius.circular(10),
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,
-              highlightColor: lightPrimaryColor,
+              highlightColor: Colors.transparent,
               onTap: onTapFunction,
               child: const CircleAvatar(
-                radius: 20,
+                radius: 16.3,
                 backgroundColor: lightPrimaryColor,
-                child: Icon(Iconsax.notification_bing),
+                child: Icon(
+                  Iconsax.notification_bing,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
@@ -46,8 +46,8 @@ class HomeHeader extends StatelessWidget {
         Text(
           userName,
           style: const TextStyle(
-              color: textOnPrimaryColor,
-              fontSize: MyTextStyles.subTitleSize,
+            color: textOnPrimaryColor,
+            fontSize: MyTextStyles.subTitleSize,
           ),
         ),
       ],

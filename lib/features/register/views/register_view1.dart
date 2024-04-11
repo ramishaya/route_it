@@ -27,12 +27,10 @@ class RegisterView1 extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                darkPrimaryColor,
-                primaryColor,
-                secondaryColor2,
-              ]
-          )
-      ),
+            darkPrimaryColor,
+            primaryColor,
+            secondaryColor2,
+          ])),
       child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -51,63 +49,70 @@ class RegisterView1 extends StatelessWidget {
                       style: TextStyle(
                           color: lightPrimaryColor,
                           fontSize: 45,
-                          fontWeight: FontWeight.w400
-                      ),
+                          fontWeight: FontWeight.w400),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: size.height * .05,),
+                    SizedBox(
+                      height: size.height * .05,
+                    ),
                     defaultFormField(
                         controller: firstNameController,
                         type: TextInputType.text,
-                        validator: (value){},
-                        hint: "FIRST NAME" ,
-                        prefix: Iconsax.user
+                        validator: (value) {},
+                        hint: "FIRST NAME",
+                        prefix: Iconsax.user),
+                    SizedBox(
+                      height: size.height * .01,
                     ),
-                    SizedBox(height: size.height * .01,),
                     defaultFormField(
                         controller: lastNameController,
                         type: TextInputType.text,
-                        validator: (value){},
-                        hint: "LAST NAME" ,
-                        prefix: Iconsax.user_add
+                        validator: (value) {},
+                        hint: "LAST NAME",
+                        prefix: Iconsax.user_add),
+                    SizedBox(
+                      height: size.height * .01,
                     ),
-                    SizedBox(height: size.height * .01,),
                     defaultFormField(
                         controller: emailController,
                         type: TextInputType.emailAddress,
-                        validator: (value){},
-                        hint: "EMAIL" ,
-                        prefix: Iconsax.message
+                        validator: (value) {},
+                        hint: "EMAIL",
+                        prefix: Iconsax.message),
+                    SizedBox(
+                      height: size.height * .01,
                     ),
-                    SizedBox(height: size.height * .01,),
                     defaultFormField(
                         controller: passwordController,
                         type: TextInputType.visiblePassword,
-                        validator: (value){},
-                        hint: "PASSWORD" ,
+                        validator: (value) {},
+                        hint: "PASSWORD",
                         prefix: Iconsax.lock,
-                        suffix: Iconsax.eye_slash
+                        suffix: Iconsax.eye_slash),
+                    SizedBox(
+                      height: size.height * .03,
                     ),
-                    SizedBox(height: size.height * .03,),
                     defaultButton(
-                      function: (){
+                      color: lightPrimaryColor,
+                      function: () {
                         GoRouter.of(context).push(AppRouter.kRegisterView2);
                       },
                       text: "next",
                     ),
-                    SizedBox(height: size.height * .04,),
+                    SizedBox(
+                      height: size.height * .04,
+                    ),
                     myDivider(),
-                    SizedBox(height: size.height * .02,),
+                    SizedBox(
+                      height: size.height * .02,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:
-                      [
+                      children: [
                         Text(
                           'I already have an account',
-                          style: TextStyle(
-                              color: lightPrimaryColor,
-                              fontSize: 15
-                          ),
+                          style:
+                              TextStyle(color: lightPrimaryColor, fontSize: 15),
                         ),
                         SizedBox(width: size.width * .01),
                         defaultTextButton(
@@ -115,16 +120,14 @@ class RegisterView1 extends StatelessWidget {
                               GoRouter.of(context).push(AppRouter.kLoginView);
                             },
                             text: 'login',
-                            color: secondaryColor
-                        ),
+                            color: secondaryColor),
                       ],
                     ),
                   ],
                 ),
               ),
             ),
-          )
-      ),
+          )),
     );
   }
 }

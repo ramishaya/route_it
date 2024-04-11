@@ -8,12 +8,11 @@ class DomainsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-        child: SingleChildScrollView(
-            child: GradientContainer(
-      size: size,
-      child: const Center(
-        child: Text("data"),
-      ),
-    )));
+        child: GradientContainer(
+              size: size,
+              child: const Center(
+                child: Text("data"),
+              ),
+            ));
   }
 }
