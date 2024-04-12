@@ -18,7 +18,7 @@ const Color subTitleColor = Colors.grey;
 
 List<Color> cardColors = const [
   Color(0XFF554484),
-  Color(0XFF00C8A2),
-  Color(0XFF0091BE),
+  Color(0XFF008398),
+  Color(0XFF0063a2),
   Color(0XFF004082)
 ];

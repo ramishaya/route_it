@@ -54,7 +54,7 @@ class HomeWelcomeCard extends StatelessWidget {
               function: () {},
               text: "Start",
               width: size.width * 0.267,
-              height: size.height*0.04),
+              height: size.height * 0.04),
         )
       ]),
     );
