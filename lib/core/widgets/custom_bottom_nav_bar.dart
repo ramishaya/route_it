@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
@@ -23,7 +22,7 @@ class CustomButtomNavBar extends StatelessWidget {
       margin: EdgeInsets.all(size.width * horizintalMargin),
       height: size.width * .155,
       decoration: BoxDecoration(
-        color: lightPrimaryColor,
+        color: primaryColor,
         boxShadow: [
           BoxShadow(
             //! reset the shadow color later
@@ -73,7 +72,7 @@ class CustomButtomNavBar extends StatelessWidget {
                     listOfIcons[index],
                     size: size.width * .076,
                     color:
-                        index == currentIndex ? Colors.white : Colors.black26,
+                        index == currentIndex ? Colors.white : Colors.grey,
                   ),
                 ),
               ],
