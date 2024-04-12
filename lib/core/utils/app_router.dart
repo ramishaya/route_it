@@ -2,20 +2,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:route_it/core/widgets/custom_transitions.dart';
 import 'package:route_it/features/home/presentation/view_models/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
-import 'package:route_it/features/home/presentation/views/domains_view.dart';
+import 'package:route_it/features/home/presentation/views/tech_category_view.dart';
 import 'package:route_it/features/home/presentation/views/home_view.dart';
 import 'package:route_it/features/login/views/login_view.dart';
 import 'package:route_it/features/register/views/register_view1.dart';
 import 'package:route_it/features/register/views/register_view2.dart';
 
 // this class handels the routes in our app
-abstract class AppRouter
-{
+abstract class AppRouter {
   static const kHomeView = "/kHomeView";
   static const kLoginView = "/";
   static const kRegisterView1 = '/kRegisterView1';
   static const kRegisterView2 = '/kRegisterView2';
-  static const kDomainsView = "/kDomainsView";
+  static const kTechCategoryView = "/kTechCategoryView";
 
   static final router = GoRouter(
     routes: [
@@ -47,10 +46,10 @@ abstract class AppRouter
         builder: (context, state) => LoginView(),
       ),
       GoRoute(
-          path: kDomainsView,
+          path: kTechCategoryView,
           pageBuilder: (context, state) => const CustomTransitionPage(
-              child: DomainsView(),
-              transitionsBuilder: CustomTransitions.slideTransition)),
+              child: TechCategoryView(),
+              transitionsBuilder: CustomTransitions.fadeTransition)),
     ],
   );
 }

@@ -26,7 +26,7 @@ class GridCardsBuilder extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             if (index == 3) {
-              GoRouter.of(context).push(AppRouter.kDomainsView);
+              GoRouter.of(context).push(AppRouter.kTechCategoryView);
             }
           },
           child: CategoryCard(

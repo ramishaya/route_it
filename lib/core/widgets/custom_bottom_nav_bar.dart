@@ -22,7 +22,7 @@ class CustomButtomNavBar extends StatelessWidget {
       margin: EdgeInsets.all(size.width * horizintalMargin),
       height: size.width * .155,
       decoration: BoxDecoration(
-        color: primaryColor,
+        color: darkPrimaryColor,
         boxShadow: [
           BoxShadow(
             //! reset the shadow color later
@@ -71,8 +71,7 @@ class CustomButtomNavBar extends StatelessWidget {
                   child: Icon(
                     listOfIcons[index],
                     size: size.width * .076,
-                    color:
-                        index == currentIndex ? Colors.white : Colors.grey,
+                    color: index == currentIndex ? Colors.white : Colors.grey,
                   ),
                 ),
               ],
