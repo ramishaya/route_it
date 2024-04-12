@@ -6,19 +6,19 @@ import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/core/widgets/custom_shader_mask.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({
-    super.key,
-    required this.size,
-  });
+  const CustomSliverAppBar(
+      {super.key, required this.size, required this.img, required this.title});
 
   final Size size;
+  final String img;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: const Text(
-        "Explore Technologies",
-        style: TextStyle(fontSize: 25),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 25),
       ),
       centerTitle: true,
       leading: GestureDetector(
@@ -39,7 +39,7 @@ class CustomSliverAppBar extends StatelessWidget {
         ],
         background: CustomShaderMasK(
             fadeInColor: darkPrimaryColor,
-            imageUrl: AssetsData.welcomeImg,
+            imageUrl: img,
             width: size.width,
             height: size.height * 0.2),
       ),

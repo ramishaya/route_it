@@ -8,6 +8,8 @@ import 'package:route_it/features/login/views/login_view.dart';
 import 'package:route_it/features/register/views/register_view1.dart';
 import 'package:route_it/features/register/views/register_view2.dart';
 
+import '../../features/home/presentation/views/technology_details_view.dart';
+
 // this class handels the routes in our app
 abstract class AppRouter {
   static const kHomeView = "/kHomeView";
@@ -15,6 +17,7 @@ abstract class AppRouter {
   static const kRegisterView1 = '/kRegisterView1';
   static const kRegisterView2 = '/kRegisterView2';
   static const kTechCategoryView = "/kTechCategoryView";
+  static const kTechnologyDetailsView = "/kTechnologyDetailsView";
 
   static final router = GoRouter(
     routes: [
@@ -50,6 +53,13 @@ abstract class AppRouter {
           pageBuilder: (context, state) => const CustomTransitionPage(
               child: TechCategoryView(),
               transitionsBuilder: CustomTransitions.fadeTransition)),
+
+      GoRoute(
+        path: kTechnologyDetailsView,
+        pageBuilder: (context, state) => const CustomTransitionPage(
+            child: TechnologyDetailsView(),
+            transitionsBuilder: CustomTransitions.slideFromRightTransition),
+      )
     ],
   );
 }

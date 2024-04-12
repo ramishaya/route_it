@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/core/utils/my_text_styles.dart';
+import 'package:route_it/core/widgets/linear_gradient_container.dart';
 import 'package:route_it/core/widgets/tech_category_builder.dart';
 import 'package:route_it/features/home/presentation/views/widgets/custom_sliver_app_bar.dart';
 
@@ -14,19 +16,12 @@ class TechCategoryView extends StatelessWidget {
     int itemCount = 4;
     return Scaffold(
         extendBodyBehindAppBar: true,
-        body: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.center,
-                    colors: [
-                  darkPrimaryColor.withOpacity(0.5),
-                  darkPrimaryColor,
-                ])),
+        body: LinearGradientContainer(
+            size: size,
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                CustomSliverAppBar(size: size),
+                CustomSliverAppBar(size: size ,  img: AssetsData.welcomeImg,  title: "Explore Technologies",),
                 SliverList(
                     delegate: SliverChildListDelegate([
                   Padding(
