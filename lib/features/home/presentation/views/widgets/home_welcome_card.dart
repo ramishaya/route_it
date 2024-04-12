@@ -15,7 +15,7 @@ class HomeWelcomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * 0.174,
+      height: size.height * 0.168,
       padding: EdgeInsets.all(size.width * horizintalMargin),
       decoration: BoxDecoration(
           image: const DecorationImage(
