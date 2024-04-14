@@ -1,14 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, body_might_complete_normally_nullable
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
-import 'package:route_it/core/widgets/button_item.dart';
-import 'package:route_it/core/widgets/divider_item.dart';
-import 'package:route_it/core/widgets/text_button_item.dart';
-import 'package:route_it/core/widgets/text_field_item.dart';
+import 'package:route_it/core/widgets/custom_button_item.dart';
+import 'package:route_it/core/widgets/custom_text_field_item.dart';
+import 'package:route_it/core/widgets/custom_divider_item.dart';
+import 'package:route_it/core/widgets/custom_text_button_item.dart';
 
 class RegisterView1 extends StatelessWidget {
   RegisterView1({super.key});
@@ -22,17 +22,15 @@ class RegisterView1 extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                darkPrimaryColor,
-                primaryColor,
-                secondaryColor2,
-              ]
-          )
-      ),
+            darkPrimaryColor,
+            primaryColor,
+            secondaryColor2,
+          ])),
       child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -46,76 +44,82 @@ class RegisterView1 extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Create new account",
                       style: TextStyle(
                           color: lightPrimaryColor,
                           fontSize: 45,
-                          fontWeight: FontWeight.w400
-                      ),
+                          fontWeight: FontWeight.w400),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: size.height * .05,),
-                    defaultFormField(
+                    SizedBox(
+                      height: size.height * .05,
+                    ),
+                    CustomTextFieldItem(
                         controller: firstNameController,
                         type: TextInputType.text,
-                        validator: (value){},
-                        hint: "FIRST NAME" ,
-                        prefix: Iconsax.user
+                        validator: (value) {},
+                        hint: "FIRST NAME",
+                        prefix: Iconsax.user),
+                    SizedBox(
+                      height: size.height * .01,
                     ),
-                    SizedBox(height: size.height * .01,),
-                    defaultFormField(
+                    CustomTextFieldItem(
                         controller: lastNameController,
                         type: TextInputType.text,
-                        validator: (value){},
-                        hint: "LAST NAME" ,
-                        prefix: Iconsax.user_add
+                        validator: (value) {},
+                        hint: "LAST NAME",
+                        prefix: Iconsax.user_add),
+                    SizedBox(
+                      height: size.height * .01,
                     ),
-                    SizedBox(height: size.height * .01,),
-                    defaultFormField(
+                    CustomTextFieldItem(
                         controller: emailController,
                         type: TextInputType.emailAddress,
-                        validator: (value){},
-                        hint: "EMAIL" ,
-                        prefix: Iconsax.message
+                        validator: (value) {},
+                        hint: "EMAIL",
+                        prefix: Iconsax.message),
+                    SizedBox(
+                      height: size.height * .01,
                     ),
-                    SizedBox(height: size.height * .01,),
-                    defaultFormField(
+                    CustomTextFieldItem(
                         controller: passwordController,
                         type: TextInputType.visiblePassword,
-                        validator: (value){},
-                        hint: "PASSWORD" ,
+                        validator: (value) {},
+                        hint: "PASSWORD",
                         prefix: Iconsax.lock,
-                        suffix: Iconsax.eye_slash
+                        suffix: Iconsax.eye_slash),
+                    SizedBox(
+                      height: size.height * .03,
                     ),
-                    SizedBox(height: size.height * .03,),
-                    defaultButton(
-                      function: (){
+                    CustomButtonItem(
+                      function: () {
                         GoRouter.of(context).push(AppRouter.kRegisterView2);
                       },
                       text: "next",
                     ),
-                    SizedBox(height: size.height * .04,),
-                    myDivider(),
-                    SizedBox(height: size.height * .02,),
+                    SizedBox(
+                      height: size.height * .04,
+                    ),
+                    const CustomDividerItem(),
+                    SizedBox(
+                      height: size.height * .02,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:
-                      [
-                        Text(
+                      children: [
+                        const Text(
                           'I already have an account',
-                          style: TextStyle(
-                              color: lightPrimaryColor,
-                              fontSize: 15
-                          ),
+                          style:
+                              TextStyle(color: lightPrimaryColor, fontSize: 15),
                         ),
                         SizedBox(width: size.width * .01),
-                        defaultTextButton(
+                        CustomTextButtonItem(
                             function: () {
                               GoRouter.of(context).push(AppRouter.kLoginView);
                             },
                             text: 'login',
-                            color: secondaryColor
+                            color: secondaryColor,
                         ),
                       ],
                     ),
@@ -123,8 +127,7 @@ class RegisterView1 extends StatelessWidget {
                 ),
               ),
             ),
-          )
-      ),
+          )),
     );
   }
 }

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DefaultHeight extends StatelessWidget {
-  const DefaultHeight({
-    super.key,
-    required this.size,
-    required this.height
-  });
+  const DefaultHeight({super.key, required this.size, required this.height});
 
   final double height;
 

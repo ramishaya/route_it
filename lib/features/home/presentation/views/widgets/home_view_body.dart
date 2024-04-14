@@ -7,11 +7,10 @@ import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
 import 'package:route_it/core/utils/assets_data.dart';
-import 'package:route_it/core/utils/my_text_styles.dart';
+import 'package:route_it/core/utils/app_styles.dart';
+import 'package:route_it/core/widgets/default_height.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_welcome_card.dart';
-
-import '../../../../../core/widgets/default_height.dart';
 
 List<Color> cardColors = [
   Color(0XFFfa7921),
@@ -46,7 +45,6 @@ class HomeViewBody extends StatelessWidget {
             DefaultHeight(size: size, height: 0.03),
             HomeWelcomeCard(size: size),
             DefaultHeight(size: size, height: 0.03),
-
             Text(
               "Technologies",
               style: GoogleFonts.lato(
@@ -73,13 +71,10 @@ class HomeViewBody extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        cardColors[index],
-                        lightPrimaryColor
-                        
-                      ]),
+                      gradient: LinearGradient(
+                          colors: [cardColors[index] , subTitleColor]),
                       borderRadius: BorderRadius.all(Radius.circular(25)),
-                      color: lightPrimaryColor,
+                      color: lightPrimaryColor.withOpacity(.4),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
