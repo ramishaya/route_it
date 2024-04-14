@@ -20,10 +20,10 @@ class CustomBackButton extends StatelessWidget {
         onTap: () {
           GoRouter.of(context).pop;
         },
-        child: Container(
+        child: const SizedBox(
           width: 30,
           height: 30,
-          child: const Center(
+          child:  Center(
               child: Icon(
             size: 25,
             Iconsax.arrow_left_24,
