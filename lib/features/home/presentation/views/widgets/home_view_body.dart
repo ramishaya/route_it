@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:route_it/constants.dart';
+<<<<<<< HEAD
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
 import 'package:route_it/core/utils/assets_data.dart';
@@ -18,6 +18,14 @@ List<Color> cardColors = [
   Color(0XFF3bf4fb),
   Color(0XFFcaff8a)
 ];
+=======
+import 'package:route_it/core/utils/my_text_styles.dart';
+import 'package:route_it/core/widgets/grid_cards_builder.dart';
+import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
+import 'package:route_it/features/home/presentation/views/widgets/home_welcome_card.dart';
+
+import '../../../../../core/widgets/default_height_item.dart';
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -32,25 +40,30 @@ class HomeViewBody extends StatelessWidget {
             horizontal: size.width * horizintalMargin,
             vertical: size.height * verticalMargin),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HomeHeader(
               size: size,
               userName: "Rami Shaya",
               onTapFunction: () {
-                //! here we Navigate to the Navigations Screen
+                //! here we Navigate to the notifications Screen
               },
             ),
-            DefaultHeight(size: size, height: 0.03),
+            DefaultHeightItem(size: size, height: 0.03),
             HomeWelcomeCard(size: size),
+<<<<<<< HEAD
             DefaultHeight(size: size, height: 0.03),
+=======
+            DefaultHeightItem(size: size, height: 0.03),
+
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8
             Text(
               "Technologies",
               style: GoogleFonts.lato(
                   fontSize: MyTextStyles.titleSize,
-                  fontWeight: MyTextStyles.titleWeight),
+                  fontWeight: FontWeight.bold),
             ),
+<<<<<<< HEAD
             DefaultHeight(size: size, height: 0.03),
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -112,12 +125,17 @@ class HomeViewBody extends StatelessWidget {
               },
             ),
             DefaultHeight(size: size, height: 0.03),
+=======
+            DefaultHeightItem(size: size, height: 0.03),
+            GridCardsBuilder(size: size),
+            DefaultHeightItem(size: size, height: 0.03),
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8
 
             Text(
               "Trending",
               style: GoogleFonts.lato(
                   fontSize: MyTextStyles.titleSize,
-                  fontWeight: MyTextStyles.titleWeight),
+                  fontWeight: FontWeight.bold),
             ),
 
             //  SizedBox(

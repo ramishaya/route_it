@@ -83,11 +83,18 @@ class LoginView extends StatelessWidget {
                         prefix: Iconsax.lock,
                         suffix: Iconsax.eye_slash,
                       ),
+<<<<<<< HEAD:lib/features/login/presentation/views/login_view.dart
                       SizedBox(
                         height: size.height * .03,
                       ),
                       CustomButtonItem(
                         function: () {
+=======
+                      SizedBox(height: size.height * .03,),
+                      defaultButton(
+                        color: lightPrimaryColor,
+                        function: (){
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/login/views/login_view.dart
                           GoRouter.of(context).push(AppRouter.kHomeView);
                         },
                         text: "sign in",

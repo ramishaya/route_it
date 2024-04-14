@@ -55,7 +55,11 @@ class RegisterView1 extends StatelessWidget {
                     SizedBox(
                       height: size.height * .05,
                     ),
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                     CustomTextFieldItem(
+=======
+                    defaultFormField(
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                         controller: firstNameController,
                         type: TextInputType.text,
                         validator: (value) {},
@@ -64,7 +68,11 @@ class RegisterView1 extends StatelessWidget {
                     SizedBox(
                       height: size.height * .01,
                     ),
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                     CustomTextFieldItem(
+=======
+                    defaultFormField(
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                         controller: lastNameController,
                         type: TextInputType.text,
                         validator: (value) {},
@@ -73,7 +81,11 @@ class RegisterView1 extends StatelessWidget {
                     SizedBox(
                       height: size.height * .01,
                     ),
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                     CustomTextFieldItem(
+=======
+                    defaultFormField(
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                         controller: emailController,
                         type: TextInputType.emailAddress,
                         validator: (value) {},
@@ -82,7 +94,11 @@ class RegisterView1 extends StatelessWidget {
                     SizedBox(
                       height: size.height * .01,
                     ),
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                     CustomTextFieldItem(
+=======
+                    defaultFormField(
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                         controller: passwordController,
                         type: TextInputType.visiblePassword,
                         validator: (value) {},
@@ -92,7 +108,12 @@ class RegisterView1 extends StatelessWidget {
                     SizedBox(
                       height: size.height * .03,
                     ),
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                     CustomButtonItem(
+=======
+                    defaultButton(
+                      color: lightPrimaryColor,
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                       function: () {
                         GoRouter.of(context).push(AppRouter.kRegisterView2);
                       },
@@ -101,14 +122,22 @@ class RegisterView1 extends StatelessWidget {
                     SizedBox(
                       height: size.height * .04,
                     ),
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                     const CustomDividerItem(),
+=======
+                    myDivider(),
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                     SizedBox(
                       height: size.height * .02,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                         const Text(
+=======
+                        Text(
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                           'I already have an account',
                           style:
                               TextStyle(color: lightPrimaryColor, fontSize: 15),
@@ -119,8 +148,12 @@ class RegisterView1 extends StatelessWidget {
                               GoRouter.of(context).push(AppRouter.kLoginView);
                             },
                             text: 'login',
+<<<<<<< HEAD:lib/features/register/presentation/views/register_view1.dart
                             color: secondaryColor,
                         ),
+=======
+                            color: secondaryColor),
+>>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/register/views/register_view1.dart
                       ],
                     ),
                   ],
