@@ -89,6 +89,7 @@ class RegisterView1 extends StatelessWidget {
                       height: size.height * .03,
                     ),
                     CustomButtonItem(
+                      textColor: textOnPrimaryColor,
                       radius: 10,
                       backgroundColor: primaryColor,
                       width: double.infinity,

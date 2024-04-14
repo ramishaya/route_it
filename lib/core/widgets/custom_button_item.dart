@@ -11,7 +11,9 @@ class CustomButtonItem extends StatelessWidget {
       required this.text,
       required this.width,
       required this.height,
-      required this.radius});
+      required this.radius,
+      required this.textColor
+      });
 
   final double width;
   final double height;
@@ -21,6 +23,7 @@ class CustomButtonItem extends StatelessWidget {
   final double radius;
   final Function function;
   final String text;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {

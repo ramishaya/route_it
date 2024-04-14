@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
@@ -81,9 +82,16 @@ class TechnologyDetailsView extends StatelessWidget {
                           ),
                           Column(
                             children: [
+                              SizedBox(
+                                height: 30,
+                              ),
                               Stack(
                                 children: [
                                   CustomCard2(size: size),
+                                  Positioned(
+                                    right: 30,
+                                    top: 0,
+                                    child: Image.asset(AssetsData.avatarImg , height: 170,)),
                                 ],
                               )
                             ],

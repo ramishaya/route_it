@@ -15,6 +15,7 @@ class HomeWelcomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: size.width,
       height: size.height * 0.168,
       padding: EdgeInsets.all(size.width * horizintalMargin),
       decoration: BoxDecoration(
@@ -25,42 +26,42 @@ class HomeWelcomeCard extends StatelessWidget {
               fit: BoxFit.cover),
           color: lightPrimaryColor,
           borderRadius: BorderRadius.circular(10)),
-      child: Row(children: [
-        RichText(
-          text: const TextSpan(
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              shadows: [],
+      child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RichText(
+              text: const TextSpan(
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  shadows: [],
+                ),
+                children: [
+                  TextSpan(
+                    text: 'What would you like\n',
+                  ),
+                  TextSpan(
+                    text: 'To Learn \n',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  TextSpan(
+                    text: 'Today?',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ],
+              ),
             ),
-            children: [
-              TextSpan(
-                text: 'What would you like\n',
-              ),
-              TextSpan(
-                text: 'To Learn \n',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-              TextSpan(
-                text: 'Today?',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding:
-              EdgeInsets.only(top: size.height * 0.04, left: size.width * 0.07),
-          child: CustomButtonItem(
-            radius: 10,
-            width: size.width * 0.267,
-            height: size.height * 0.05,
-            function: () {},
-            text: "Start",
-            backgroundColor: Colors.white,
-          ),
-        )
-      ]),
+            CustomButtonItem(
+              textColor: textOnPrimaryColor,
+              radius: 10,
+              width: size.width * 0.267,
+              height: size.height * 0.05,
+              function: () {},
+              text: "Start",
+              backgroundColor: Colors.white,
+            )
+          ]),
     );
   }
 }
