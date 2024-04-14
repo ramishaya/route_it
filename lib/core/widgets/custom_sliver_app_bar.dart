@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/core/widgets/custom_shader_mask.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -21,7 +20,9 @@ class CustomSliverAppBar extends StatelessWidget {
         style: const TextStyle(fontSize: 25),
       ),
       centerTitle: true,
-      leading: GestureDetector(
+      leading: InkWell(
+        focusColor: lightPrimaryColor,
+        borderRadius: BorderRadius.circular(70),
         onTap: GoRouter.of(context).pop,
         child: const Icon(
           Iconsax.arrow_left_24,

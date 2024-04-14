@@ -19,7 +19,10 @@ class HomeWelcomeCard extends StatelessWidget {
       padding: EdgeInsets.all(size.width * horizintalMargin),
       decoration: BoxDecoration(
           image: const DecorationImage(
-              image: AssetImage(AssetsData.welcomeImg), fit: BoxFit.cover),
+              //! remeber it
+              // colorFilter: ColorFilter.mode(lightPrimaryColor, BlendMode.dstOver),
+              image: AssetImage(AssetsData.welcomeImg),
+              fit: BoxFit.cover),
           color: lightPrimaryColor,
           borderRadius: BorderRadius.circular(10)),
       child: Row(children: [

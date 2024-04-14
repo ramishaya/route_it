@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:route_it/core/utils/app_router.dart';
-import 'package:route_it/core/widgets/category_card.dart';
+import 'package:route_it/features/home/presentation/views/widgets/category_card.dart';
 
 class GridCardsBuilder extends StatelessWidget {
   const GridCardsBuilder({
