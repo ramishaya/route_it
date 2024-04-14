@@ -1,9 +1,8 @@
 // ignore_for_file: body_might_complete_normally_nullable, depend_on_referenced_packages
 
 import 'dart:async';
-import 'dart:ffi';
+
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +17,6 @@ import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/core/utils/app_styles.dart';
 import 'package:route_it/core/widgets/custom_text_field_item.dart';
-import 'package:route_it/core/widgets/image_picker_item.dart';
 
 class RegisterView2 extends StatefulWidget {
   const RegisterView2({super.key});
@@ -133,14 +131,14 @@ class _RegisterView2State extends State<RegisterView2> {
               children: [
                 image != null
                     ? Center(
-                        child: buildImagePickerItem(
-                          function: () async {
-                            ImageSource? source =
-                                await showImageSource(context);
-                          },
-                          imagePath: image!,
-                        ),
-                      )
+                        // child: buildImagePickerItem(
+                        //   function: () async {
+                        //     ImageSource? source =
+                        //         await showImageSource(context);
+                        //   },
+                        //   imagePath: image!,
+                        // ),
+                        )
                     : Center(
                         child: GestureDetector(
                           onTap: () async {
@@ -173,7 +171,8 @@ class _RegisterView2State extends State<RegisterView2> {
 
                     if (selectedDate != null) {
                       setState(() {
-                        dateController.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+                        dateController.text =
+                            DateFormat('yyyy-MM-dd').format(selectedDate);
                       });
                     }
                   },
@@ -217,7 +216,7 @@ class _RegisterView2State extends State<RegisterView2> {
                 ),
                 Container(
                   // height: size.height * .05,
-                  width: size.width ,
+                  width: size.width,
                   decoration: BoxDecoration(
                     color: lightPrimaryColor.withOpacity(.6),
                     borderRadius: BorderRadius.circular(10),
@@ -225,9 +224,8 @@ class _RegisterView2State extends State<RegisterView2> {
                   child: DropdownMenu(
                     width: size.width,
                     inputDecorationTheme: const InputDecorationTheme(
-                      enabledBorder: InputBorder.none,
-                      suffixIconColor: Colors.transparent
-                    ),
+                        enabledBorder: InputBorder.none,
+                        suffixIconColor: Colors.transparent),
                     leadingIcon: const Icon(
                       Iconsax.code,
                       color: primaryColor,
@@ -239,16 +237,27 @@ class _RegisterView2State extends State<RegisterView2> {
                           fontWeight: FontWeight.w600,
                           color: primaryColor,
                           fontStyle: FontStyle.italic,
-                          fontSize: 15
-                      ),
+                          fontSize: 15),
                     ),
                     dropdownMenuEntries: const [
-                      DropdownMenuEntry(value: "DamascusUniversity", label: "Damascus University"),
-                      DropdownMenuEntry(value: "TishreenUniversity", label: "Tishreen University"),
-                      DropdownMenuEntry(value: "AlBaathUniversity", label: "Al-Baath University"),
-                      DropdownMenuEntry(value: "AlFuratUniversity", label: "Al-Furat University"),
-                      DropdownMenuEntry(value: "AleppoUniversity", label: "Aleppo University"),
-                      DropdownMenuEntry(value: "AlAndalusUniversity", label: "Al-Andalus University"),
+                      DropdownMenuEntry(
+                          value: "DamascusUniversity",
+                          label: "Damascus University"),
+                      DropdownMenuEntry(
+                          value: "TishreenUniversity",
+                          label: "Tishreen University"),
+                      DropdownMenuEntry(
+                          value: "AlBaathUniversity",
+                          label: "Al-Baath University"),
+                      DropdownMenuEntry(
+                          value: "AlFuratUniversity",
+                          label: "Al-Furat University"),
+                      DropdownMenuEntry(
+                          value: "AleppoUniversity",
+                          label: "Aleppo University"),
+                      DropdownMenuEntry(
+                          value: "AlAndalusUniversity",
+                          label: "Al-Andalus University"),
                       DropdownMenuEntry(value: "Other", label: "Other"),
                     ],
                   ),

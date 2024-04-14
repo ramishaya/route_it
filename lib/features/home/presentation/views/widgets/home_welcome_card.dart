@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/assets_data.dart';
-<<<<<<< HEAD
-import 'package:route_it/core/utils/app_styles.dart';
-=======
-import 'package:route_it/core/widgets/button_item.dart';
->>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8
+import 'package:route_it/core/widgets/custom_button_item.dart';
 
 class HomeWelcomeCard extends StatelessWidget {
   const HomeWelcomeCard({
@@ -33,7 +29,7 @@ class HomeWelcomeCard extends StatelessWidget {
         RichText(
           text: const TextSpan(
             style: TextStyle(
-              fontSize: 23,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
               shadows: [],
             ),
@@ -53,17 +49,25 @@ class HomeWelcomeCard extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: size.height * 0.067),
-          child: defaultButton(
-              color: Colors.white,
-              isUpperCase: false,
-              isItalic: true,
-              function: () {},
-              text: "Start",
-              width: size.width * 0.267,
-              height: size.height * 0.04),
+          padding:
+              EdgeInsets.only(top: size.height * 0.04, left: size.width * 0.07),
+          child: CustomButtonItem(
+            radius: 10,
+            width: size.width * 0.267,
+            height: size.height * 0.05,
+            function: () {},
+            text: "Start",
+            backgroundColor: Colors.white,
+          ),
         )
       ]),
     );
   }
 }
+
+// isUpperCase: false,
+//               isItalic: true,
+//               function: () {},
+//               text: "Start",
+//               width: size.width * 0.267,
+//               height: size.height * 0.04

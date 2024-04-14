@@ -32,10 +32,6 @@ class LoginView extends StatelessWidget {
           ])),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            backgroundColor: Colors.transparent,
-          ),
           body: Padding(
             padding: const EdgeInsets.all(30.0),
             child: Form(
@@ -83,18 +79,15 @@ class LoginView extends StatelessWidget {
                         prefix: Iconsax.lock,
                         suffix: Iconsax.eye_slash,
                       ),
-<<<<<<< HEAD:lib/features/login/presentation/views/login_view.dart
                       SizedBox(
                         height: size.height * .03,
                       ),
                       CustomButtonItem(
+                        radius: 10,
+                        backgroundColor: primaryColor,
+                        width: double.infinity,
+                        height: size.height * 0.05,
                         function: () {
-=======
-                      SizedBox(height: size.height * .03,),
-                      defaultButton(
-                        color: lightPrimaryColor,
-                        function: (){
->>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8:lib/features/login/views/login_view.dart
                           GoRouter.of(context).push(AppRouter.kHomeView);
                         },
                         text: "sign in",

@@ -2,17 +2,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:route_it/core/widgets/custom_transitions.dart';
 import 'package:route_it/features/home/presentation/view_models/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
-<<<<<<< HEAD
-import 'package:route_it/features/home/presentation/views/explore_view.dart';
-=======
 import 'package:route_it/features/home/presentation/views/tech_category_view.dart';
->>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8
 import 'package:route_it/features/home/presentation/views/home_view.dart';
+import 'package:route_it/features/home/presentation/views/technology_details_view.dart';
 import 'package:route_it/features/login/presentation/views/login_view.dart';
 import 'package:route_it/features/register/presentation/views/register_view1.dart';
 import 'package:route_it/features/register/presentation/views/register_view2.dart';
-
-import '../../features/home/presentation/views/technology_details_view.dart';
 
 // this class handels the routes in our app
 abstract class AppRouter {
@@ -55,20 +50,14 @@ abstract class AppRouter {
       GoRoute(
           path: kTechCategoryView,
           pageBuilder: (context, state) => const CustomTransitionPage(
-<<<<<<< HEAD
-              child: ExploreView(),
-              transitionsBuilder: CustomTransitions.slideTransition)),
-=======
               child: TechCategoryView(),
               transitionsBuilder: CustomTransitions.fadeTransition)),
-
       GoRoute(
         path: kTechnologyDetailsView,
         pageBuilder: (context, state) => const CustomTransitionPage(
             child: TechnologyDetailsView(),
             transitionsBuilder: CustomTransitions.slideFromRightTransition),
       )
->>>>>>> d88fadebd2b6a51d29030afe4ca3e360106afaa8
     ],
   );
 }

@@ -6,8 +6,8 @@ import 'package:route_it/core/utils/app_theme.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: lightPrimaryColor.withOpacity(0.15),
-      statusBarIconBrightness: Brightness.dark));
+      statusBarColor: darkPrimaryColor.withOpacity(0.15),
+      statusBarIconBrightness: Brightness.light));
   runApp(const RouteIT());
 }
 

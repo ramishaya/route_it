@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/app_styles.dart';
 import 'package:route_it/core/utils/assets_data.dart';
-import 'package:route_it/core/utils/my_text_styles.dart';
 import 'dart:math' as math;
 
 class CategoryCard extends StatelessWidget {

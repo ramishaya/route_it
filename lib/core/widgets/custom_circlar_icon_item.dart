@@ -6,7 +6,7 @@ import 'package:route_it/core/utils/app_colors.dart';
 class CustomCirclarIconItem extends StatelessWidget {
   CustomCirclarIconItem({super.key, required this.function , this.icon});
 
-  final function;
+  final Function() function;
   Icon? icon;
 
   @override
