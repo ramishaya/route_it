@@ -1,13 +1,21 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
 import 'package:route_it/core/utils/app_theme.dart';
+import 'package:route_it/core/utils/bloc_observer.dart';
+import 'package:route_it/core/utils/service_locator.dart';
+import 'package:route_it/core/utils/shared_prefrences.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
+  setupServiceLocator();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: darkPrimaryColor.withOpacity(0.15),
       statusBarIconBrightness: Brightness.light));
+  SharedPref.init();
+  // getIt.get<SharedPref>().init();
   runApp(const RouteIT());
 }
 

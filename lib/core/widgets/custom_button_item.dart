@@ -12,8 +12,7 @@ class CustomButtonItem extends StatelessWidget {
       required this.width,
       required this.height,
       required this.radius,
-      required this.textColor
-      });
+      required this.textColor});
 
   final double width;
   final double height;
