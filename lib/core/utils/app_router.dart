@@ -2,7 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:route_it/core/utils/service_locator.dart';
 import 'package:route_it/core/widgets/custom_transitions.dart';
+import 'package:route_it/features/home/data/repo/technology_categories_repo_impl.dart';
 import 'package:route_it/features/home/presentation/view_models/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
+import 'package:route_it/features/home/presentation/view_models/techology_categories_cubit.dart/technology_categories_cubit.dart';
 import 'package:route_it/features/home/presentation/views/tech_category_view.dart';
 import 'package:route_it/features/home/presentation/views/home_view.dart';
 import 'package:route_it/features/home/presentation/views/technology_details_view.dart';
@@ -27,11 +29,17 @@ abstract class AppRouter {
     routes: [
       //Home
       GoRoute(
-        path: kHomeView,
+        path: "/",
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider<BottomNavBarCubit>(
               create: (context) => BottomNavBarCubit(),
+            ),
+            BlocProvider(
+              create: (context) => TechnologyCategoriesCubit(
+                  technologyCategoriesRepo:
+                      getIt.get<TechnologyCategoriesRepoImpl>())
+                ..fetchAllCategories(),
             )
           ],
           child: const HomeView(),
@@ -41,7 +49,8 @@ abstract class AppRouter {
       GoRoute(
         path: kRegisterView1,
         builder: (context, state) => BlocProvider(
-          create: (context) => RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>()),
+          create: (context) =>
+              RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>()),
           child: RegisterView1(),
         ),
       ),
@@ -51,14 +60,14 @@ abstract class AppRouter {
         builder: (context, state) => const RegisterView2(),
       ),
       //Login
-      GoRoute(
-        path: kLoginView,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()),
-          child: LoginView(),
-        ),
-      ),
+      // GoRoute(
+      //   path: kLoginView,
+      //   builder: (context, state) => BlocProvider(
+      //     create: (context) =>
+      //         LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()),
+      //     child: LoginView(),
+      //   ),
+      // ),
       GoRoute(
           path: kTechCategoryView,
           pageBuilder: (context, state) => const CustomTransitionPage(

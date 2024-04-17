@@ -7,6 +7,7 @@ import 'package:route_it/core/utils/app_theme.dart';
 import 'package:route_it/core/utils/bloc_observer.dart';
 import 'package:route_it/core/utils/service_locator.dart';
 import 'package:route_it/core/utils/shared_prefrences.dart';
+import 'package:route_it/features/home/data/repo/technology_categories_repo_impl.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -14,7 +15,8 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: darkPrimaryColor.withOpacity(0.15),
       statusBarIconBrightness: Brightness.light));
-  SharedPref.init();
+  getIt.get<TechnologyCategoriesRepoImpl>().fetchAllCategories();
+  //SharedPref.init();
   // getIt.get<SharedPref>().init();
   runApp(const RouteIT());
 }

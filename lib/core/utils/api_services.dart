@@ -3,14 +3,14 @@ import 'package:route_it/core/utils/shared_prefrences.dart';
 
 class ApiService {
   final Dio _dio;
-  final String _baseUrl = 'http://192.168.78.225:8000/api/';
+  final String _baseUrl = 'http://192.168.174.225:8000/api/';
   ApiService(this._dio);
-  Future<Map<String, dynamic>> get(
+  Future<List<dynamic>> get(
       {required String endpoint,
       required String bearerToken,
       Map<String, dynamic>? queryParameters}) async {
     //String? myToken = SharedPref.getData(key: 'token');
-   // _dio.options.headers['Authorization'] = 'Bearer $myToken';
+    _dio.options.headers['Authorization'] = 'Bearer $bearerToken';
     var response = await _dio.get(
       '$_baseUrl$endpoint',
       queryParameters: queryParameters,
