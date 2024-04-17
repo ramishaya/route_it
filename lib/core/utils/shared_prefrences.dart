@@ -5,6 +5,7 @@ class SharedPref {
   static late SharedPreferences sharedPreferences;
 
   static Future<void> init() async {
+    print("Hello share");
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
