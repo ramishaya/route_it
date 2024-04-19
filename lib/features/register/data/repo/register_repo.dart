@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:route_it/core/errors/failures.dart';
+import 'package:route_it/features/register/data/models/register2_model.dart';
 import 'package:route_it/features/register/data/models/register_model.dart';
 
 abstract class RegisterRepo {
