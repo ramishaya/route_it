@@ -1,0 +1,26 @@
+part of 'technology_cubit.dart';
+
+@immutable
+class TechnologyState extends Equatable {
+  const TechnologyState();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class TechnologyInitial extends TechnologyState {}
+
+class TechnologySuccess extends TechnologyState {
+  final List<TechnologiesModel> technologiesModel;
+
+   const TechnologySuccess({required this.technologiesModel});
+}
+
+class TechnologyFailure extends TechnologyState {
+  final String errMessage;
+
+  const TechnologyFailure({required this.errMessage});
+}
+
+

@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
   final List<Widget> navPages = const [
     HomeViewBody(),
     Center(child: Text("Hello")),
-    Center(child: Text("Hello"))
+    Center(child: Text("Hello")),
   ];
 
   @override

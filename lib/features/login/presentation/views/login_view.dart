@@ -7,15 +7,15 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
-import 'package:route_it/core/utils/service_locator.dart';
-import 'package:route_it/core/utils/shared_prefrences.dart';
+import 'package:route_it/core/utils/cache_services.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
-import 'package:route_it/core/widgets/custom_error_item.dart';
 import 'package:route_it/core/widgets/custom_loading_item.dart';
 import 'package:route_it/core/widgets/custom_text_field_item.dart';
 import 'package:route_it/core/widgets/custom_divider_item.dart';
 import 'package:route_it/core/widgets/custom_text_button_item.dart';
+import 'package:route_it/core/widgets/custom_toast.dart';
 import 'package:route_it/features/login/presentation/view_models/login_cubit/login_cubit.dart';
+import 'package:route_it/features/login/presentation/view_models/password_visibility_cubit/password_visibility_cubit.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -30,133 +30,135 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          // getIt
-          //     .get<SharedPref>()
-          //     .saveData(key: "Token", value: state.info.success!.token);
-          GoRouter.of(context).push(AppRouter.kHomeView);
+          showToast(state.info.message ?? "", ToastState.SUCCESS);
+          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+        }
+        else if(state is LoginFailure){
+          showToast(state.errMessage, ToastState.ERROR);
         }
       },
       builder: (context, state) {
-        return ConditionalBuilder(
-          condition: state is LoginInitial,
-          fallback: (context) {
-            if (state is LoginFailure) {
-              return CustomErrorItem(
-                errorMessage: state.errMessage,
-                size: size,
-              );
-            } else {
-              return const CustomLoadingItem();
-            }
-          },
-          builder: (context) => Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                  darkPrimaryColor,
-                  primaryColor,
-                  secondaryColor2,
-                ])),
-            child: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Form(
-                    key: formKey,
-                    child: Center(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Login now",
-                              style: TextStyle(
-                                  color: lightPrimaryColor,
-                                  fontSize: 45,
-                                  fontWeight: FontWeight.w400),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: size.height * .05,
-                            ),
-                            CustomTextFieldItem(
-                                controller: emailController,
-                                type: TextInputType.emailAddress,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Please Enter Your Email Address !';
-                                  }
-                                  return null;
-                                },
-                                hint: "EMAIL",
-                                prefix: Iconsax.message),
-                            SizedBox(
-                              height: size.height * .01,
-                            ),
-                            CustomTextFieldItem(
-                              controller: passwordController,
-                              type: TextInputType.visiblePassword,
+        return Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    darkPrimaryColor,
+                    primaryColor,
+                    secondaryColor2,
+                  ])),
+          child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Form(
+                  key: formKey,
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Login now",
+                            style: TextStyle(
+                                color: lightPrimaryColor,
+                                fontSize: 45,
+                                fontWeight: FontWeight.w400),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: size.height * .05,
+                          ),
+                          CustomTextFieldItem(
+                              controller: emailController,
+                              type: TextInputType.emailAddress,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Password is too Short !';
+                                  return 'Please Enter Your Email Address !';
                                 }
                                 return null;
                               },
-                              hint: "PASSWORD",
-                              prefix: Iconsax.lock,
-                              suffix: Iconsax.eye_slash,
-                            ),
-                            SizedBox(
-                              height: size.height * .03,
-                            ),
-                            CustomButtonItem(
-                              textColor: textOnPrimaryColor,
-                              radius: 10,
-                              backgroundColor: primaryColor,
-                              width: double.infinity,
-                              height: size.height * 0.05,
-                              function: () {
-                                BlocProvider.of<LoginCubit>(context).login(
-                                    email: emailController.text,
-                                    password: passwordController.text);
-                              },
-                              text: "sign in",
-                            ),
-                            SizedBox(
-                              height: size.height * .04,
-                            ),
-                            const CustomDividerItem(),
-                            SizedBox(
-                              height: size.height * .02,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Don\'t have an account ? ',
-                                  style: TextStyle(
-                                      color: lightPrimaryColor, fontSize: 15),
-                                ),
-                                SizedBox(width: size.width * .01),
-                                CustomTextButtonItem(
+                              hint: "EMAIL",
+                              prefix: Iconsax.message),
+                          SizedBox(
+                            height: size.height * .01,
+                          ),
+                          BlocBuilder<PasswordVisibilityCubit , PasswordVisibilityState>(
+                              builder: (context , state) => CustomTextFieldItem(
+                                controller: passwordController,
+                                type: TextInputType.visiblePassword,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Password is too Short !';
+                                  }
+                                  return null;
+                                },
+                                hint: "PASSWORD",
+                                prefix: Iconsax.lock,
+                                suffix: PasswordVisibilityCubit.get(context).suffix,
+                                suffixPressed: (){
+                                  PasswordVisibilityCubit.get(context).changePasswordVisibility();
+                                },
+                                isPassword: PasswordVisibilityCubit.get(context).isPassword,
+                              ),
+                          ),
+                          SizedBox(
+                            height: size.height * .03,
+                          ),
+                          ConditionalBuilder(
+                              condition: state is! LoginLoading,
+                              builder: (context){
+                                return CustomButtonItem(
+                                  textColor: textOnPrimaryColor,
+                                  radius: 10,
+                                  backgroundColor: primaryColor,
+                                  width: double.infinity,
+                                  height: size.height * 0.05,
                                   function: () {
-                                    GoRouter.of(context)
-                                        .push(AppRouter.kRegisterView1);
+                                    if(formKey.currentState!.validate()){
+                                      BlocProvider.of<LoginCubit>(context).login(
+                                          email: emailController.text,
+                                          password: passwordController.text);
+                                    }
                                   },
-                                  text: 'register',
-                                  color: secondaryColor,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                                  text: "sign in",
+                                );
+                              },
+                              fallback: (context) => const CustomLoadingItem(),
+                          ),
+                          SizedBox(
+                            height: size.height * .04,
+                          ),
+                          const CustomDividerItem(),
+                          SizedBox(
+                            height: size.height * .02,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Don\'t have an account ? ',
+                                style: TextStyle(
+                                    color: lightPrimaryColor, fontSize: 15),
+                              ),
+                              SizedBox(width: size.width * .01),
+                              CustomTextButtonItem(
+                                function: () {
+                                  GoRouter.of(context)
+                                      .push(AppRouter.kRegisterView1);
+                                },
+                                text: 'register',
+                                color: secondaryColor,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                )),
-          ),
+                ),
+              )),
         );
       },
     );

@@ -14,6 +14,10 @@ const Color secondaryColor = Color(0XFF3F51B5);
 
 const Color textOnPrimaryColor = Colors.white;
 
+const Color errorColor = Colors.red;
+
+const Color warningColor = Colors.amberAccent;
+
 // const Color titleColor = Colors.white;
 
 const Color subTitleColor = Colors.grey;

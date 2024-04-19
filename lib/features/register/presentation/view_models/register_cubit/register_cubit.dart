@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:meta/meta.dart';
 import 'package:route_it/features/register/data/models/register_model.dart';
 import 'package:route_it/features/register/data/repo/register_repo.dart';
@@ -8,6 +11,7 @@ part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit({required this.registerRepo}) : super(RegisterInitial());
+  static RegisterCubit get(context) => BlocProvider.of(context);
 
   final RegisterRepo registerRepo;
 

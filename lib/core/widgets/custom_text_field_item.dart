@@ -2,25 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 
 class CustomTextFieldItem extends StatelessWidget {
-  const CustomTextFieldItem(
-      {super.key,
-      this.onTap,
-      this.onSubmit,
-      this.onChange,
-      this.color1,
-      this.color2,
-      this.suffix,
-      this.suffixPressed,
-      required this.validator,
-      required this.hint,
-      required this.prefix,
-      required this.controller,
-      required this.type});
+  const CustomTextFieldItem({
+    super.key,
+    this.onTap,
+    this.onSubmit,
+    this.onChange,
+    this.color1,
+    this.color2,
+    this.suffix,
+    this.isPassword = false,
+    this.suffixPressed,
+    required this.validator,
+    required this.hint,
+    required this.prefix,
+    required this.controller,
+    required this.type,
+  });
 
   final VoidCallback? onTap;
   final Function? onSubmit;
   final ValueChanged<String>? onChange;
-  final bool isPassword = false;
+  final bool isPassword;
   final Color? color1;
   final Color? color2;
   final Color color3 = subTitleColor;
@@ -57,7 +59,7 @@ class CustomTextFieldItem extends StatelessWidget {
               letterSpacing: 1.5,
               fontWeight: FontWeight.w600,
               color: primaryColor,
-              fontStyle: FontStyle.italic,
+              fontStyle: FontStyle.normal,
               fontSize: 15),
           focusedBorder: const OutlineInputBorder(
               borderSide:

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 
 import 'package:route_it/core/errors/failures.dart';
 import 'package:route_it/core/utils/api_services.dart';
+import 'package:route_it/core/utils/cache_services.dart';
 import 'package:route_it/features/login/data/models/login_model.dart';
 import 'package:route_it/features/login/data/repos/login_repo.dart';
 
@@ -19,8 +20,7 @@ class LoginRepoImpl implements LoginRepo {
           endpoint: "login", data: {"email": email, "password": password});
 
       LoginModel response = LoginModel.fromJson(data);
-
-      // print(response.success!.token);
+      // CacheServices.saveData(key: "token", value: response.success!.token);
 
       return (Right(response));
     } catch (e) {
