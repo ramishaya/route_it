@@ -1,16 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-
 import 'package:route_it/core/utils/app_styles.dart';
 import 'package:route_it/core/widgets/custom_error_item.dart';
-import 'package:route_it/core/widgets/custom_loading_item.dart';
-import 'package:route_it/features/home/data/models/technology_category_model.dart';
 import 'package:route_it/features/home/presentation/view_models/techology_categories_cubit.dart/technology_categories_cubit.dart';
 import 'package:route_it/features/home/presentation/views/widgets/grid_cards_builder.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
@@ -61,7 +56,10 @@ class HomeViewBody extends StatelessWidget {
                       SizedBox(
                         height: size.height * 0.01,
                       ),
-                      GridCardsBuilder(size: size , categoriesModel: state.technologyCategories,),
+                      GridCardsBuilder(
+                        size: size,
+                        categoriesModel: state.technologyCategories,
+                      ),
                       SizedBox(
                         height: size.height * 0.03,
                       ),

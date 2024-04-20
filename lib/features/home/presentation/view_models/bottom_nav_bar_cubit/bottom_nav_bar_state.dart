@@ -7,5 +7,6 @@ abstract class BottomNavBarState {
 }
 
 class BottomNavBarInitial extends BottomNavBarState {
+
   const BottomNavBarInitial({required super.tabIndex});
 }

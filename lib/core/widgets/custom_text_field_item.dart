@@ -2,25 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 
 class CustomTextFieldItem extends StatelessWidget {
-  const CustomTextFieldItem(
-      {super.key,
-      this.onTap,
-      this.onSubmit,
-      this.onChange,
-      this.color1,
-      this.color2,
-      this.suffix,
-      this.suffixPressed,
-      required this.validator,
-      required this.hint,
-      required this.prefix,
-      required this.controller,
-      required this.type});
+  const CustomTextFieldItem({
+    super.key,
+    this.onTap,
+    this.onSubmit,
+    this.onChange,
+    this.color1,
+    this.color2,
+    this.suffix,
+    this.isPassword = false,
+    this.suffixPressed,
+    required this.validator,
+    required this.hint,
+    required this.prefix,
+    required this.controller,
+    required this.type,
+  });
 
   final VoidCallback? onTap;
   final Function? onSubmit;
   final ValueChanged<String>? onChange;
-  final bool isPassword = false;
+  final bool isPassword;
   final Color? color1;
   final Color? color2;
   final Color color3 = subTitleColor;
@@ -39,46 +41,65 @@ class CustomTextFieldItem extends StatelessWidget {
         color: lightPrimaryColor.withOpacity(.6),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: TextFormField(
-        onTap: onTap,
-        controller: controller,
-        onFieldSubmitted: onSubmit != null ? (s) => onSubmit!() : null,
-        onChanged: onChange,
-        validator: validator,
-        keyboardType: type,
-        obscureText: isPassword,
-        cursorColor: primaryColor,
-        style: const TextStyle(
-            color: lightPrimaryColor, fontStyle: FontStyle.normal),
-        decoration: InputDecoration(
-          enabledBorder: InputBorder.none,
-          hintText: hint,
-          hintStyle: const TextStyle(
-              letterSpacing: 1.5,
-              fontWeight: FontWeight.w600,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: TextFormField(
+          onTap: onTap,
+          controller: controller,
+          onFieldSubmitted: onSubmit != null ? (s) => onSubmit!() : null,
+          onChanged: onChange,
+          validator: validator,
+          keyboardType: type,
+          obscureText: isPassword,
+          cursorColor: primaryColor,
+          style: const TextStyle(
+              color: lightPrimaryColor, fontStyle: FontStyle.normal),
+          decoration: InputDecoration(
+            errorStyle: const TextStyle(
+              color: errorColor,
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: errorColor.withOpacity(.4),
+                style: BorderStyle.solid,
+              )
+            ),
+            enabledBorder: InputBorder.none,
+            hintText: hint,
+            hintStyle: const TextStyle(
+                letterSpacing: 1.5,
+                fontWeight: FontWeight.w600,
+                color: primaryColor,
+                fontStyle: FontStyle.normal,
+                fontSize: 15),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: warningColor.withOpacity(.4)
+              ),
+              borderRadius: BorderRadius.circular(10)
+            ),
+            focusedBorder: const OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: primaryColor, style: BorderStyle.none)),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            prefixIcon: Icon(
+              prefix,
               color: primaryColor,
-              fontStyle: FontStyle.italic,
-              fontSize: 15),
-          focusedBorder: const OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: primaryColor, style: BorderStyle.none)),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            ),
+            suffixIcon: suffix != null
+                ? IconButton(
+                    onPressed: () {
+                      suffixPressed!();
+                    },
+                    icon: Icon(
+                      suffix,
+                      color: primaryColor,
+                    ))
+                : null,
           ),
-          prefixIcon: Icon(
-            prefix,
-            color: primaryColor,
-          ),
-          suffixIcon: suffix != null
-              ? IconButton(
-                  onPressed: () {
-                    suffixPressed!();
-                  },
-                  icon: Icon(
-                    suffix,
-                    color: primaryColor,
-                  ))
-              : null,
         ),
       ),
     );

@@ -121,31 +121,17 @@ class _CustomLoadingItemState extends State<CustomLoadingItem>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                  darkPrimaryColor,
-                  primaryColor,
-                  secondaryColor2,
-                ])),
-      child: Scaffold(
-      backgroundColor: Colors.transparent,
-        body: Center(
-          child: SizedBox(
-            height: 100,
-            width: 100,
-            child: CustomPaint(
-              painter: MyPainter(
-                firstAnimation.value,
-                secondAnimation.value,
-                thirdAnimation.value,
-                fourthAnimation.value,
-                fifthAnimation.value,
-              ),
-            ),
+    return Center(
+      child: SizedBox(
+        height: 80,
+        width: 80,
+        child: CustomPaint(
+          painter: MyPainter(
+            firstAnimation.value,
+            secondAnimation.value,
+            thirdAnimation.value,
+            fourthAnimation.value,
+            fifthAnimation.value,
           ),
         ),
       ),

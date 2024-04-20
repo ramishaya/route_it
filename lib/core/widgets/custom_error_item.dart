@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:route_it/core/utils/app_colors.dart';
@@ -8,6 +7,7 @@ import 'package:route_it/core/utils/assets_data.dart';
 class CustomErrorItem extends StatelessWidget {
   const CustomErrorItem(
       {super.key, required this.errorMessage, required this.size});
+
   final String errorMessage;
   final Size size;
 
