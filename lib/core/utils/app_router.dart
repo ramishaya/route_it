@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:route_it/core/utils/service_locator.dart';
 import 'package:route_it/core/widgets/custom_transitions.dart';
-import 'package:route_it/features/home/data/repo/technology_categories_repo_impl.dart';
+import 'package:route_it/features/home/data/repo/home_repo_impl.dart';
 import 'package:route_it/features/home/presentation/view_models/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:route_it/features/home/presentation/view_models/techology_categories_cubit.dart/technology_categories_cubit.dart';
 import 'package:route_it/features/home/presentation/views/tech_category_view.dart';
@@ -37,8 +37,7 @@ abstract class AppRouter {
             ),
             BlocProvider(
               create: (context) => TechnologyCategoriesCubit(
-                  technologyCategoriesRepo:
-                      getIt.get<TechnologyCategoriesRepoImpl>())
+                  technologyCategoriesRepo: getIt.get<HomeRepoImpl>())
                 ..fetchAllCategories(),
             )
           ],

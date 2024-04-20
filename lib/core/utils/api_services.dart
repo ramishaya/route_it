@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:route_it/core/utils/shared_prefrences.dart';
 
 class ApiService {
   final Dio _dio;
-  final String _baseUrl = 'http://192.168.174.225:8000/api/';
+  final String _baseUrl = 'http://192.168.1.37:8000/api/';
   ApiService(this._dio);
   Future<List<dynamic>> get(
       {required String endpoint,

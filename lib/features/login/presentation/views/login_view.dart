@@ -49,7 +49,8 @@ class LoginView extends StatelessWidget {
               return const CustomLoadingItem();
             }
           },
-          builder: (context) => Container(
+          builder: (context) => 
+          Container(
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topRight,

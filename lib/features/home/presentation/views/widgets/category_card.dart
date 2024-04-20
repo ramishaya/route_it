@@ -37,9 +37,7 @@ class CategoryCard extends StatelessWidget {
                         ? Image.asset(
                             AssetsData.categoryImg2,
                           )
-                        : Image.asset(
-                            AssetsData.categoryImg,
-                          )),
+                        : Image.network("")),
               ),
             ),
           ),
