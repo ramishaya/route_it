@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:route_it/core/utils/assets_data.dart';
 import 'package:route_it/features/register/data/models/register2_model.dart';
 import 'package:route_it/features/register/data/repo/register2_repo.dart';
 
@@ -15,11 +16,11 @@ class Register2Cubit extends Cubit<Register2State> {
 
   Future<void> completeRegister(
       {required String email,
-      required String image,
+      String image = AssetsData.profileImg,
       required String birthDate,
       required bool itStudent,
       required String university,
-      required String bio}) async {
+      String bio = ""}) async {
     emit(Register2Loading());
     var response = await register2repo.register2(
         email: email,
