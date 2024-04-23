@@ -14,17 +14,19 @@ class CustomImagePicker extends StatelessWidget {
       create: (context) => ImagePickerCubit(),
       child: BlocBuilder<ImagePickerCubit, ImagePickerState>(
         builder: (context, state) {
-          return GestureDetector(
-            onTap: () {
-              ImagePickerCubit.get(context).pickImageFromGallery();
-            },
-            child: ClipOval(
-              child: SizedBox(
-                height: 200,
-                width: 200,
-                child: Image.file(
-                    ImagePickerCubit.get(context).selectedImage ?? File(AssetsData.profileImg),
-                  fit: BoxFit.cover,
+          return Center(
+            child: GestureDetector(
+              onTap: () {
+                ImagePickerCubit.get(context).pickImageFromGallery();
+              },
+              child: ClipOval(
+                child: SizedBox(
+                  height: 200,
+                  width: 200,
+                  child: Image.file(
+                      ImagePickerCubit.get(context).selectedImage ?? File(AssetsData.profileImg),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

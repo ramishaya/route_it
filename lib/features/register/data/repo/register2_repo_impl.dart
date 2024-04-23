@@ -8,7 +8,7 @@ import 'package:route_it/features/register/data/repo/register2_repo.dart';
 class Register2RepoImpl implements Register2Repo {
   final ApiService apiService;
 
-  Register2RepoImpl(this.apiService);
+  Register2RepoImpl({required this.apiService});
 
   @override
   Future<Either<Failure, Register2Model>> register2(

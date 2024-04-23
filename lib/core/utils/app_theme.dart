@@ -13,6 +13,7 @@ class AppTheme {
       textTheme: ThemeData.dark().textTheme.apply(
         fontFamily: "Ubuntu"
       ),
+      primaryColor: primaryColor,
       splashColor: secondaryColor2,
       primaryColorDark: primaryColor
     );

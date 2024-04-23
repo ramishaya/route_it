@@ -6,7 +6,7 @@ import 'package:route_it/core/utils/app_colors.dart';
 class CustomButtonItem extends StatelessWidget {
   const CustomButtonItem(
       {super.key,
-      required this.backgroundColor,
+        this.backgroundColor = darkPrimaryColor,
       required this.function,
       required this.text,
       required this.width,
@@ -44,7 +44,7 @@ class CustomButtonItem extends StatelessWidget {
         ),
       ),
       decoration: BoxDecoration(
-        color: darkPrimaryColor,
+        color: backgroundColor,
         boxShadow: [
           BoxShadow(
             color: primaryColor.withOpacity(0.1),

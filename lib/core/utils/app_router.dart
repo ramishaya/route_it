@@ -12,7 +12,10 @@ import 'package:route_it/features/login/data/repos/login_repo_impl.dart';
 import 'package:route_it/features/login/presentation/view_models/login_cubit/login_cubit.dart';
 import 'package:route_it/features/login/presentation/view_models/password_visibility_cubit/password_visibility_cubit.dart';
 import 'package:route_it/features/login/presentation/views/login_view.dart';
+import 'package:route_it/features/register/data/repo/register2_repo_impl.dart';
 import 'package:route_it/features/register/data/repo/register_repo_impl.dart';
+import 'package:route_it/features/register/presentation/view_models/radio_cubit/radio_cubit.dart';
+import 'package:route_it/features/register/presentation/view_models/register2_cubit/register2_cubit.dart';
 import 'package:route_it/features/register/presentation/view_models/register_cubit/register_cubit.dart';
 import 'package:route_it/features/register/presentation/views/register_view1.dart';
 import 'package:route_it/features/register/presentation/views/register_view2.dart';
@@ -63,7 +66,17 @@ abstract class AppRouter {
       //Register2
       GoRoute(
         path: kRegisterView2,
-        builder: (context, state) => const RegisterView2(),
+        builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider<RadioCubit>(
+                  create: (context) => RadioCubit(),
+              ),
+              BlocProvider(
+                  create: (context) => Register2Cubit(register2repo: getIt.get<Register2RepoImpl>()),
+              ),
+            ],
+            child: const RegisterView2(),
+        ),
       ),
       //Login
       GoRoute(

@@ -7,11 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
-import 'package:route_it/core/utils/cache_services.dart';
-import 'package:route_it/core/utils/service_locator.dart';
-import 'package:route_it/core/utils/shared_prefrences.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
-import 'package:route_it/core/widgets/custom_error_item.dart';
 import 'package:route_it/core/widgets/custom_loading_item.dart';
 import 'package:route_it/core/widgets/custom_text_field_item.dart';
 import 'package:route_it/core/widgets/custom_divider_item.dart';
@@ -36,10 +32,10 @@ class RegisterView1 extends StatelessWidget {
       listener: (context, state) {
         if (state is RegisterSucces) {
           showToast(state.response.message ?? "", ToastState.SUCCESS);
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+          GoRouter.of(context).pushReplacement(AppRouter.kRegisterView2);
         } else if (state is RegisterFailure) {
           showToast(state.errMessage, ToastState.ERROR);
-          // GoRouter.of(context).push(AppRouter.kHomeView);
+          // GoRouter.of(context).push(AppRouter.kRegisterView2);
         }
       },
       builder: (context, state) {
@@ -80,7 +76,8 @@ class RegisterView1 extends StatelessWidget {
                               type: TextInputType.text,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'First name must not be empty !';
+                                  // return 'First name must not be empty !';
+                                  return '';
                                 }
                                 return null;
                               },
@@ -94,7 +91,8 @@ class RegisterView1 extends StatelessWidget {
                               type: TextInputType.text,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Last name must not be empty !';
+                                  // return 'Last name must not be empty !';
+                                  return '';
                                 }
                                 return null;
                               },
@@ -108,7 +106,8 @@ class RegisterView1 extends StatelessWidget {
                               type: TextInputType.emailAddress,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please Enter Your Email Address !';
+                                  // return 'Please Enter Your Email Address !';
+                                  return '';
                                 }
                                 return null;
                               },
@@ -124,21 +123,18 @@ class RegisterView1 extends StatelessWidget {
                                     type: TextInputType.visiblePassword,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'Password is too Short !';
+                                        // return 'Password is too Short !';
+                                        return '';
                                       }
                                       return null;
                                     },
                                     hint: "PASSWORD",
                                     prefix: Iconsax.lock,
-                                    suffix: PasswordVisibilityCubit.get(context)
-                                        .suffix,
+                                    suffix: PasswordVisibilityCubit.get(context).suffix,
                                     suffixPressed: () {
-                                      PasswordVisibilityCubit.get(context)
-                                          .changePasswordVisibility();
+                                      PasswordVisibilityCubit.get(context).changePasswordVisibility();
                                     },
-                                    isPassword:
-                                        PasswordVisibilityCubit.get(context)
-                                            .isPassword,
+                                    isPassword: PasswordVisibilityCubit.get(context).isPassword,
                                   )),
                           SizedBox(
                             height: size.height * .03,
@@ -149,19 +145,17 @@ class RegisterView1 extends StatelessWidget {
                               return CustomButtonItem(
                                 textColor: textOnPrimaryColor,
                                 radius: 10,
-                                backgroundColor: primaryColor,
+                                backgroundColor: darkPrimaryColor,
                                 width: double.infinity,
                                 height: size.height * 0.05,
                                 function: () {
                                   if (formKey.currentState!.validate()) {
-                                    BlocProvider.of<RegisterCubit>(context)
-                                        .register(
+                                    BlocProvider.of<RegisterCubit>(context).register(
                                             name: nameController.text,
                                             email: emailController.text,
                                             password: passwordController.text,
-                                            passpasswordConfirmation:
-                                                confirmationPasswordController
-                                                    .text);
+                                            passpasswordConfirmation: confirmationPasswordController.text
+                                    );
                                   }
                                 },
                                 text: "Next",
@@ -187,8 +181,7 @@ class RegisterView1 extends StatelessWidget {
                               SizedBox(width: size.width * .01),
                               CustomTextButtonItem(
                                 function: () {
-                                  GoRouter.of(context)
-                                      .push(AppRouter.kLoginView);
+                                  GoRouter.of(context).push(AppRouter.kLoginView);
                                 },
                                 text: 'login',
                                 color: secondaryColor,

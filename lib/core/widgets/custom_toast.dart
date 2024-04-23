@@ -22,7 +22,7 @@ Color chooseToastColor(ToastState state) {
   switch(state)
   {
     case ToastState.SUCCESS:
-      color = primaryColor.withOpacity(.6);
+      color = Colors.green.withOpacity(.6);
       break;
     case ToastState.ERROR:
       color = errorColor.withOpacity(.6);

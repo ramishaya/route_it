@@ -1,5 +1,4 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +6,11 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
+import 'package:route_it/core/utils/cache_services.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
 import 'package:route_it/core/widgets/custom_date_picker.dart';
 import 'package:route_it/core/widgets/custom_loading_item.dart';
+import 'package:route_it/core/widgets/custom_radio_list.dart';
 import 'package:route_it/core/widgets/custom_text_field_item.dart';
 import 'package:route_it/core/widgets/custom_divider_item.dart';
 import 'package:route_it/core/widgets/custom_text_button_item.dart';
@@ -32,6 +33,7 @@ class LoginView extends StatelessWidget {
         if (state is LoginSuccess) {
           showToast(state.info.message ?? "", ToastState.SUCCESS);
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+          // CacheServices.saveData(key: "token", value: state.info.success!.token);
         }
         else if(state is LoginFailure){
           showToast(state.errMessage, ToastState.ERROR);
@@ -75,7 +77,8 @@ class LoginView extends StatelessWidget {
                               type: TextInputType.emailAddress,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please Enter Your Email Address !';
+                                  // return 'Please Enter Your Email Address !';
+                                  return '';
                                 }
                                 return null;
                               },
@@ -90,7 +93,8 @@ class LoginView extends StatelessWidget {
                                 type: TextInputType.visiblePassword,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Password is too Short !';
+                                    // return 'Password is too Short !';
+                                    return '';
                                   }
                                   return null;
                                 },
@@ -112,7 +116,7 @@ class LoginView extends StatelessWidget {
                                 return CustomButtonItem(
                                   textColor: textOnPrimaryColor,
                                   radius: 10,
-                                  backgroundColor: primaryColor,
+                                  backgroundColor: darkPrimaryColor,
                                   width: double.infinity,
                                   height: size.height * 0.05,
                                   function: () {
@@ -145,8 +149,7 @@ class LoginView extends StatelessWidget {
                               SizedBox(width: size.width * .01),
                               CustomTextButtonItem(
                                 function: () {
-                                  GoRouter.of(context)
-                                      .push(AppRouter.kRegisterView1);
+                                  GoRouter.of(context).push(AppRouter.kRegisterView1);
                                 },
                                 text: 'register',
                                 color: secondaryColor,
