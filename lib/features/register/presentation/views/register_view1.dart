@@ -32,10 +32,10 @@ class RegisterView1 extends StatelessWidget {
       listener: (context, state) {
         if (state is RegisterSucces) {
           showToast(state.response.message ?? "", ToastState.SUCCESS);
-          GoRouter.of(context).pushReplacement(AppRouter.kRegisterView2);
+          // GoRouter.of(context).pushReplacement(AppRouter.kRegisterView2);
         } else if (state is RegisterFailure) {
           showToast(state.errMessage, ToastState.ERROR);
-          // GoRouter.of(context).push(AppRouter.kRegisterView2);
+          GoRouter.of(context).push(AppRouter.kRegisterView2);
         }
       },
       builder: (context, state) {
@@ -73,11 +73,11 @@ class RegisterView1 extends StatelessWidget {
                           ),
                           CustomTextFieldItem(
                               controller: nameController,
-                              type: TextInputType.text,
+                              type: TextInputType.name,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   // return 'First name must not be empty !';
-                                  return '';
+                                  return "";
                                 }
                                 return null;
                               },
@@ -88,7 +88,7 @@ class RegisterView1 extends StatelessWidget {
                           ),
                           CustomTextFieldItem(
                               controller: emailController,
-                              type: TextInputType.text,
+                              type: TextInputType.name,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   // return 'Last name must not be empty !';
@@ -116,8 +116,7 @@ class RegisterView1 extends StatelessWidget {
                           SizedBox(
                             height: size.height * .01,
                           ),
-                          BlocBuilder<PasswordVisibilityCubit,
-                                  PasswordVisibilityState>(
+                          BlocBuilder<PasswordVisibilityCubit, PasswordVisibilityState>(
                               builder: (context, state) => CustomTextFieldItem(
                                     controller: confirmationPasswordController,
                                     type: TextInputType.visiblePassword,

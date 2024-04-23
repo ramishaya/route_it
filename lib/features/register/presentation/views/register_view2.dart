@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
@@ -101,16 +102,21 @@ class RegisterView2 extends StatelessWidget {
                     "I am not an IT student.",
                   ],
                 ),
-                Visibility(
-                  visible: RadioCubit.get(context).currentIndex == 1 ? true : false,
-                  maintainState: true,
-                  maintainAnimation: true,
-                  maintainSize: false,
-                  replacement: Container(),
-                  child: CustomDropdownMenu(
-                    controller: collegeController,
-                    size: size.height * .21,
-                  ),
+                BlocBuilder<RadioCubit , RadioState>(
+                    builder: (context , state){
+                      return Visibility(
+                        // visible: RadioCubit.get(context).isMenuVisibilty,
+                        visible: RadioCubit.get(context).currentIndex == 0 ? true : false,
+                        maintainState: true,
+                        maintainAnimation: true,
+                        maintainSize: false,
+                        replacement: Container(),
+                        child: CustomDropdownMenu(
+                          controller: collegeController,
+                          size: size.height * .21,
+                        ),
+                      );
+                    },
                 ),
                 // BlocProvider(
                 //   create: (context) => RadioCubit(),

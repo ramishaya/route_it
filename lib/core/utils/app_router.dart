@@ -14,6 +14,8 @@ import 'package:route_it/features/login/presentation/view_models/password_visibi
 import 'package:route_it/features/login/presentation/views/login_view.dart';
 import 'package:route_it/features/register/data/repo/register2_repo_impl.dart';
 import 'package:route_it/features/register/data/repo/register_repo_impl.dart';
+import 'package:route_it/features/register/presentation/view_models/image_picker_cubit/image_picker_cubit.dart';
+import 'package:route_it/features/register/presentation/view_models/menu_cubit/menu_cubit.dart';
 import 'package:route_it/features/register/presentation/view_models/radio_cubit/radio_cubit.dart';
 import 'package:route_it/features/register/presentation/view_models/register2_cubit/register2_cubit.dart';
 import 'package:route_it/features/register/presentation/view_models/register_cubit/register_cubit.dart';
@@ -70,6 +72,12 @@ abstract class AppRouter {
             providers: [
               BlocProvider<RadioCubit>(
                   create: (context) => RadioCubit(),
+              ),
+              BlocProvider<MenuCubit>(
+                  create: (context) => MenuCubit(),
+              ),
+              BlocProvider<ImagePickerCubit>(
+                create: (context) => ImagePickerCubit(),
               ),
               BlocProvider(
                   create: (context) => Register2Cubit(register2repo: getIt.get<Register2RepoImpl>()),

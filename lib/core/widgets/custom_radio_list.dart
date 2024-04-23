@@ -11,29 +11,26 @@ class CustomRadioList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RadioCubit(),
-      child: BlocBuilder<RadioCubit, RadioState>(
-        builder: (context, state) {
-          return SizedBox(
-            height: size,
-            child: ListView.builder(
-              itemCount: options.length,
-              itemBuilder: (context, index) {
-                return RadioListTile(
-                  title: Text(options[index]),
-                  value: index,
-                  activeColor: secondaryColor2,
-                  groupValue: RadioCubit.get(context).getCurrentIndex(),
-                  onChanged: (value) {
-                    RadioCubit.get(context).changeRadioIndex(value ?? 0);
-                  },
-                );
-              },
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<RadioCubit, RadioState>(
+      builder: (context, state) {
+        return SizedBox(
+          height: size,
+          child: ListView.builder(
+            itemCount: options.length,
+            itemBuilder: (context, index) {
+              return RadioListTile(
+                title: Text(options[index]),
+                value: index,
+                activeColor: secondaryColor2,
+                groupValue: RadioCubit.get(context).currentIndex,
+                onChanged: (value) {
+                  RadioCubit.get(context).changeRadioIndex(value ?? 0);
+                },
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

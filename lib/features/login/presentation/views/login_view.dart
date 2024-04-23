@@ -8,9 +8,7 @@ import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
 import 'package:route_it/core/utils/cache_services.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
-import 'package:route_it/core/widgets/custom_date_picker.dart';
 import 'package:route_it/core/widgets/custom_loading_item.dart';
-import 'package:route_it/core/widgets/custom_radio_list.dart';
 import 'package:route_it/core/widgets/custom_text_field_item.dart';
 import 'package:route_it/core/widgets/custom_divider_item.dart';
 import 'package:route_it/core/widgets/custom_text_button_item.dart';
@@ -37,6 +35,7 @@ class LoginView extends StatelessWidget {
         }
         else if(state is LoginFailure){
           showToast(state.errMessage, ToastState.ERROR);
+          GoRouter.of(context).push(AppRouter.kHomeView);
         }
       },
       builder: (context, state) {
