@@ -33,7 +33,7 @@ class LoginView extends StatelessWidget {
         if (state is LoginSuccess) {
           showToast(state.info.message ?? "", ToastState.SUCCESS);
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-          // CacheServices.saveData(key: "token", value: state.info.success!.token);
+          CacheServices.saveData(key: "token", value: state.info.success!.token);
         }
         else if(state is LoginFailure){
           showToast(state.errMessage, ToastState.ERROR);
