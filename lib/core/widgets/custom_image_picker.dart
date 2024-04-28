@@ -10,11 +10,11 @@ class CustomImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ImagePickerCubit(),
-      child: BlocBuilder<ImagePickerCubit, ImagePickerState>(
-        builder: (context, state) {
-          return GestureDetector(
+
+    return BlocBuilder<ImagePickerCubit, ImagePickerState>(
+      builder: (context, state) {
+        return Center(
+          child: GestureDetector(
             onTap: () {
               ImagePickerCubit.get(context).pickImageFromGallery();
             },
@@ -28,9 +28,9 @@ class CustomImagePicker extends StatelessWidget {
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

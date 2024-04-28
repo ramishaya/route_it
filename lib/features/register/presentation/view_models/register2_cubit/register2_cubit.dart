@@ -8,7 +8,7 @@ import 'package:route_it/features/register/data/repo/register2_repo.dart';
 part 'register2_state.dart';
 
 class Register2Cubit extends Cubit<Register2State> {
-  Register2Cubit(this.register2repo) : super(Register2Initial());
+  Register2Cubit({required this.register2repo}) : super(Register2Initial());
 
   static Register2Cubit get(context) => BlocProvider.of(context);
 
@@ -32,6 +32,7 @@ class Register2Cubit extends Cubit<Register2State> {
 
     response.fold(
         (failure) => emit(Register2Failure(errorMessage: failure.errMessage)),
-        (success) => Register2Success(register2model: success));
+        (success) => emit(Register2Success(register2model: success))
+    );
   }
 }

@@ -1,105 +1,27 @@
-// ignore_for_file: body_might_complete_normally_nullable, depend_on_referenced_packages
-
-import 'dart:async';
-
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/assets_data.dart';
-import 'package:route_it/core/utils/app_styles.dart';
-import 'package:route_it/core/widgets/custom_text_field_item.dart';
+import 'package:route_it/core/widgets/custom_button_item.dart';
+import 'package:route_it/core/widgets/custom_date_picker.dart';
+import 'package:route_it/core/widgets/custom_image_picker.dart';
+import 'package:route_it/core/widgets/custom_outlined_text_field.dart';
+import 'package:route_it/core/widgets/custom_radio_list.dart';
+import 'package:route_it/core/widgets/custom_dropdown_menu.dart';
+import 'package:route_it/features/register/presentation/view_models/radio_cubit/radio_cubit.dart';
+import 'package:route_it/features/register/presentation/view_models/register2_cubit/register2_cubit.dart';
 
-class RegisterView2 extends StatefulWidget {
+class RegisterView2 extends StatelessWidget {
   const RegisterView2({super.key});
-
-  @override
-  State<RegisterView2> createState() => _RegisterView2State();
-}
-
-List<String> options = ["option 1", "option 2"];
-
-class _RegisterView2State extends State<RegisterView2> {
-  File? image;
-  var dateController = TextEditingController();
-  String currentOption = options[0];
-
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-
-      // final imageTemporary = File(image.path);
-      final imageParmanent = await saveImageParmanently(image.path);
-      setState(() {
-        this.image = imageParmanent;
-      });
-    } on PlatformException catch (e) {
-      print("Failed to pick image : $e");
-    }
-  }
-
-  Future<File> saveImageParmanently(String imagePath) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final name = basename(imagePath);
-    final image = File('${directory.path}/$name');
-    return File(imagePath).copy(image.path);
-  }
-
-  Future pickCamera() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image == null) return;
-
-      final imageTemporary = File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print("Failed to pick image : $e");
-    }
-  }
-
-  Future<ImageSource?> showImageSource(context) async {
-    return showMaterialModalBottomSheet(
-      context: context,
-      builder: (context) => Container(
-        height: 120,
-        child: Column(
-          children: [
-            ListTile(
-              leading: const Icon(Iconsax.camera),
-              title: const Text("Camera"),
-              onTap: () {
-                pickCamera();
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Iconsax.gallery),
-              title: const Text("gallery"),
-              onTap: () {
-                pickImage();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var dateController = TextEditingController();
+    var collegeController = TextEditingController();
+    var bioController = TextEditingController();
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -112,156 +34,107 @@ class _RegisterView2State extends State<RegisterView2> {
           ],
         ),
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
+      child: SafeArea(
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-        ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: size.width * horizintalMargin,
-            vertical: size.height * verticalMargin,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: CustomButtonItem(
+                  backgroundColor: darkPrimaryColor,
+                  function: (){
+                    GoRouter.of(context).pop();
+                  },
+                  text: "back",
+                  width: 160,
+                  height: 40,
+                  radius: 10,
+                  textColor: lightPrimaryColor,
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: CustomButtonItem(
+                  backgroundColor: darkPrimaryColor,
+                  function: (){},
+                  text: "sign up",
+                  width: 160,
+                  height: 40,
+                  radius: 10,
+                  textColor: lightPrimaryColor,
+                ),
+              )
+            ],
           ),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+          body: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                image != null
-                    ? Center(
-                        // child: buildImagePickerItem(
-                        //   function: () async {
-                        //     ImageSource? source =
-                        //         await showImageSource(context);
-                        //   },
-                        //   imagePath: image!,
-                        // ),
-                        )
-                    : Center(
-                        child: GestureDetector(
-                          onTap: () async {
-                            ImageSource? source =
-                                await showImageSource(context);
-                          },
-                          child: ClipOval(
-                            child: Image.asset(
-                              AssetsData.profileImg,
-                            ),
-                          ),
+                SizedBox(
+                  height: size.height * .03,
+                ),
+                const CustomImagePicker(),
+                SizedBox(
+                  height: size.height * .01,
+                ),
+                CustomDatePicker(
+                  dateController: dateController,
+                ),
+                SizedBox(
+                  height: size.height * .01,
+                ),
+                CustomOutlinedTextField(
+                  controller: bioController,
+                  hintText: 'Type some details about you....',
+                ),
+                SizedBox(
+                  height: size.height * .01,
+                ),
+                CustomRadioList(
+                  size: size.height * .13,
+                  options: const [
+                    "I am an IT student.",
+                    "I am not an IT student.",
+                  ],
+                ),
+                BlocBuilder<RadioCubit , RadioState>(
+                    builder: (context , state){
+                      return Visibility(
+                        // visible: RadioCubit.get(context).isMenuVisibilty,
+                        visible: RadioCubit.get(context).currentIndex == 0 ? true : false,
+                        maintainState: true,
+                        maintainAnimation: true,
+                        maintainSize: false,
+                        replacement: Container(),
+                        child: CustomDropdownMenu(
+                          controller: collegeController,
+                          size: size.height * .21,
                         ),
-                      ),
-                SizedBox(
-                  height: size.height * .03,
-                ),
-                CustomTextFieldItem(
-                  controller: dateController,
-                  type: TextInputType.none,
-                  validator: (value) {},
-                  hint: "Enter your birthdate",
-                  prefix: Iconsax.calendar,
-                  onTap: () async {
-                    final selectedDate = await showDatePicker(
-                      context: context,
-                      firstDate: DateTime(1980),
-                      lastDate: DateTime(2007),
-                      initialDate: DateTime(2007, 1, 1),
-                    );
-
-                    if (selectedDate != null) {
-                      setState(() {
-                        dateController.text =
-                            DateFormat('yyyy-MM-dd').format(selectedDate);
-                      });
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: size.height * .03,
-                ),
-                const Text(
-                  "Are you IT student ??",
-                  style: TextStyle(fontSize: MyTextStyles.subTitleSize),
-                ),
-                SizedBox(
-                  height: size.height * .03,
-                ),
-                ListTile(
-                  title: const Text("Yes I am IT student"),
-                  leading: Radio(
-                    groupValue: currentOption,
-                    value: options[0],
-                    onChanged: (value) {
-                      setState(() {
-                        currentOption = value.toString();
-                      });
+                      );
                     },
-                  ),
                 ),
-                ListTile(
-                  title: const Text("No I am not IT student"),
-                  leading: Radio(
-                    groupValue: currentOption,
-                    value: options[1],
-                    onChanged: (value) {
-                      setState(() {
-                        currentOption = value.toString();
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * .03,
-                ),
-                Container(
-                  // height: size.height * .05,
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    color: lightPrimaryColor.withOpacity(.6),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: DropdownMenu(
-                    width: size.width,
-                    inputDecorationTheme: const InputDecorationTheme(
-                        enabledBorder: InputBorder.none,
-                        suffixIconColor: Colors.transparent),
-                    leadingIcon: const Icon(
-                      Iconsax.code,
-                      color: primaryColor,
-                    ),
-                    label: const Text(
-                      "university",
-                      style: TextStyle(
-                          letterSpacing: 1.5,
-                          fontWeight: FontWeight.w600,
-                          color: primaryColor,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 15),
-                    ),
-                    dropdownMenuEntries: const [
-                      DropdownMenuEntry(
-                          value: "DamascusUniversity",
-                          label: "Damascus University"),
-                      DropdownMenuEntry(
-                          value: "TishreenUniversity",
-                          label: "Tishreen University"),
-                      DropdownMenuEntry(
-                          value: "AlBaathUniversity",
-                          label: "Al-Baath University"),
-                      DropdownMenuEntry(
-                          value: "AlFuratUniversity",
-                          label: "Al-Furat University"),
-                      DropdownMenuEntry(
-                          value: "AleppoUniversity",
-                          label: "Aleppo University"),
-                      DropdownMenuEntry(
-                          value: "AlAndalusUniversity",
-                          label: "Al-Andalus University"),
-                      DropdownMenuEntry(value: "Other", label: "Other"),
-                    ],
-                  ),
-                ),
+                // BlocProvider(
+                //   create: (context) => RadioCubit(),
+                //   child: BlocBuilder<RadioCubit , RadioState>(
+                //       builder : (context , state) {
+                //         late Widget widget;
+                //         if(RadioCubit.get(context).getCurrentIndex() == 0){
+                //           widget = CustomDropdownMenu(
+                //             controller: collegeController,
+                //             size: size.height * .35,
+                //           );
+                //         }else if(RadioCubit.get(context).getCurrentIndex() == 1){
+                //           widget = Container();
+                //         }
+                //         return widget ;
+                //       },
+                //   ),
+                // ),
               ],
             ),
           ),
