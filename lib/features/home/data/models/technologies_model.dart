@@ -6,7 +6,7 @@ class TechnologiesModel {
   String? description;
   String? descriptionAr;
   String? image;
-  Null? videos;
+  Null videos;
   String? createdAt;
   String? updatedAt;
 

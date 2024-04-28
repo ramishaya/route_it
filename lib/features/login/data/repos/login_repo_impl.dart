@@ -20,11 +20,11 @@ class LoginRepoImpl implements LoginRepo {
           endpoint: "login", data: {"email": email, "password": password});
 
       LoginModel response = LoginModel.fromJson(data);
-      // CacheServices.saveData(key: "token", value: response.success!.token);
+       CacheServices.saveData(key: "token", value: response.success!.token);
 
       return (Right(response));
     } catch (e) {
-      // print("we have error " + e.toString());
+       print("we have an error in the login repository  " + e.toString());
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
       } else {

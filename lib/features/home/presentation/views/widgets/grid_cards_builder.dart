@@ -6,13 +6,10 @@ import 'package:route_it/features/home/presentation/views/widgets/category_card.
 import '../../../data/models/technology_category_model.dart';
 
 class GridCardsBuilder extends StatelessWidget {
-  const GridCardsBuilder({
-    super.key,
-    required this.size,
-    required this.categoriesModel
-  });
+  const GridCardsBuilder(
+      {super.key, required this.size, required this.categoriesList});
 
-  final List<TechnologyCategoryModel> categoriesModel;
+  final List<TechnologyCategoryModel> categoriesList;
 
   final Size size;
 
@@ -31,10 +28,12 @@ class GridCardsBuilder extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             if (index == 3) {
-              GoRouter.of(context).push(AppRouter.kTechCategoryView);
+              GoRouter.of(context)
+                  .push(AppRouter.kTechCategoryView, extra: categoriesList);
             }
           },
           child: CategoryCard(
+            technologyCategoryModel: categoriesList,
             size: size,
             index: index,
           ),

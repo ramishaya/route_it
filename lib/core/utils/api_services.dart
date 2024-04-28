@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class ApiService {
   final Dio _dio;
-  final String _baseUrl = 'http://192.168.161.1:8000/api/';
+  final String _baseUrl = 'http://192.168.72.225:8000/api/';
   ApiService(this._dio);
   Future<List<dynamic>> get(
       {required String endpoint,
@@ -22,7 +22,7 @@ class ApiService {
     return response.data;
   }
 
-  Future<Map<String, dynamic>> postWithToken(
+  Future<Map<String, dynamic>> postWithToken( 
       {required String endpoint,
       required Map<String, dynamic> data,
       required String bearerToken}) async {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/widgets/custom_back_button2.dart';
 import 'package:route_it/core/widgets/custom_shader_mask.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -15,23 +14,15 @@ class CustomSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      pinned: true,
       title: Text(
         title,
         style: const TextStyle(fontSize: 25),
       ),
       centerTitle: true,
-      leading: InkWell(
-        focusColor: lightPrimaryColor,
-        borderRadius: BorderRadius.circular(70),
-        onTap: GoRouter.of(context).pop,
-        child: const Icon(
-          Iconsax.arrow_left_24,
-          size: 30,
-          color: Colors.white,
-        ),
-      ),
+      leading: const CustomBackButton2(),
       backgroundColor: darkPrimaryColor,
-      expandedHeight: size.height * 0.23,
+      expandedHeight: size.height * 0.18,
       stretch: true,
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.pin,
@@ -42,7 +33,7 @@ class CustomSliverAppBar extends StatelessWidget {
             fadeInColor: darkPrimaryColor,
             imageUrl: img,
             width: size.width,
-            height: size.height * 0.2),
+            height: size.height * 0.4),
       ),
     );
   }

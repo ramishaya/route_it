@@ -7,4 +7,6 @@ class AssetsData {
   static const techDetailsImg = "assets/images/dev_img.jpg";
   static const flutterLogo = "assets/image/icons8-flutter-240.png";
   static const errorImg = "assets/images/error.png";
+  static const placeHolderImg = "assets/images/placeholder.png";
+  static const reactImg = "assets/images/react2.png";
 }

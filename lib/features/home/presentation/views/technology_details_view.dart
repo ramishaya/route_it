@@ -1,108 +1,124 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/app_styles.dart';
+import 'package:route_it/core/widgets/custom_back_button2.dart';
+import 'package:route_it/core/widgets/custom_expandable_text.dart';
 import 'package:route_it/core/widgets/custom_sliver_app_bar.dart';
+import 'package:route_it/features/home/data/models/technology_category_model.dart';
+import 'package:route_it/features/home/presentation/views/widgets/grid_cards_builder.dart';
 import '../../../../core/utils/assets_data.dart';
 
 class TechnologyDetailsView extends StatelessWidget {
-  const TechnologyDetailsView({super.key});
+  const TechnologyDetailsView(
+      {super.key, required this.technologyCategoryModel});
+  final TechnologyCategoryModel technologyCategoryModel;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      color: darkPrimaryColor,
-      height: size.height,
-      child: Stack(
-        children: [
-          CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              CustomSliverAppBar(
-                  size: size,
-                  img: AssetsData.techDetailsImg,
-                  title: "FrontEnd"),
-              SliverList(
-                  delegate: SliverChildListDelegate([
-                SizedBox(
-                    height: (size.height * (0.13)) * (5.56), width: size.width)
-              ]))
+    return Scaffold(
+      backgroundColor: darkPrimaryColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: const CustomBackButton2(),
+        title: Text(
+          technologyCategoryModel.name!,
+          style: const TextStyle(fontSize: 25),
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * horizintalMargin,
+            vertical: size.width * horizintalMargin),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Description",
+                style: TextStyle(fontSize: MyTextStyles.titleSize),
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              CustomExpandableText(
+                content: technologyCategoryModel.description,
+              ),
+              const Text(
+                "FrameWorks",
+                style: TextStyle(fontSize: MyTextStyles.titleSize),
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: size.width * 0.90,
+                        height: size.height * 0.32,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: darkPrimaryColor,
+                            border: Border.all(
+                                color: const Color(0xFFFFFFFF), width: 0.3)),
+                        child:
+                            //height: size.height * 0.15,
+                            Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsets.all(size.width * horizintalMargin),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "React",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Text(
+                                    "${"React is a FrontEnd framework , it is a good frame work bla bla bla bla bla".split(' ').take(6).join(' ')}....",
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10)),
+                                  child: Image.asset(
+                                    AssetsData.reactImg,
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ));
+                },
+              )
             ],
           ),
-          Positioned.fill(
-            top: size.width * 0.5,
-            child: Container(
-              width: size.width,
-              padding: EdgeInsets.symmetric(
-                  horizontal: size.width * horizintalMargin),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20)),
-                color: darkPrimaryColor,
-                boxShadow: [
-                  BoxShadow(
-                      color: lightPrimaryColor,
-                      offset: Offset(0.0, 0.1), //(x,y)
-                      blurRadius: 3.0)
-                ],
-              ),
-              child: DefaultTabController(
-                  length: 2,
-                  child: Scaffold(
-                    appBar: AppBar(
-                      surfaceTintColor: Colors.transparent,
-                      toolbarHeight: size.height * 0.015,
-                      leading: Container(),
-                      flexibleSpace: const TabBar(
-                          indicatorColor: Colors.white,
-                          dividerColor: lightPrimaryColor,
-                          labelColor: Colors.white,
-                          unselectedLabelColor: lightPrimaryColor,
-                          physics: BouncingScrollPhysics(),
-                          tabs: [
-                            Tab(
-                              text: "About",
-                            ),
-                            Tab(
-                              text: "FrameWorks",
-                            ),
-                          ]),
-                      backgroundColor: darkPrimaryColor,
-                    ),
-                    body: SingleChildScrollView(
-                      child: SizedBox(
-                        height: size.height,
-                        child: TabBarView(children: [
-                          const SizedBox(
-                            height: 20,
-                            child: Text("kfndgn"),
-                          ),
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Stack(
-                                children: [
-                                  CustomCard2(size: size),
-                                  Positioned(
-                                    right: 30,
-                                    top: 0,
-                                    child: Image.asset(AssetsData.avatarImg , height: 170,)),
-                                ],
-                              )
-                            ],
-                          )
-                        ]),
-                      ),
-                    ),
-                  )),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

@@ -35,10 +35,10 @@ class RegisterView1 extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSucces) {
-          showToast(state.response.message ?? "", ToastState.SUCCESS);
+          //showToast(state.response.message ?? "", ToastState.SUCCESS);
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
         } else if (state is RegisterFailure) {
-          showToast(state.errMessage, ToastState.ERROR);
+          //showToast(state.errMessage, ToastState.ERROR);
           // GoRouter.of(context).push(AppRouter.kHomeView);
         }
       },

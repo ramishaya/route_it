@@ -44,8 +44,10 @@ class HomeRepoImpl implements HomeRepo {
       List<TechnologiesModel> response = data
           .map((technology) => TechnologiesModel.fromJson(technology))
           .toList();
+      print(response[1].description);
       return right(response);
     } catch (error) {
+      print(error.toString());
       if (error is DioException) {
         return Left(ServerFailure.fromDioError(error));
       } else {

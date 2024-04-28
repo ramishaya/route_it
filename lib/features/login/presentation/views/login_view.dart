@@ -30,11 +30,11 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          showToast(state.info.message ?? "", ToastState.SUCCESS);
+          //showToast(state.info.message ?? "", ToastState.SUCCESS);
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
         }
         else if(state is LoginFailure){
-          showToast(state.errMessage, ToastState.ERROR);
+          //showToast(state.errMessage, ToastState.ERROR);
         }
       },
       builder: (context, state) {

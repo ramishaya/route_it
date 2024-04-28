@@ -1,11 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/service_locator.dart';
 import 'package:route_it/core/widgets/custom_transitions.dart';
+import 'package:route_it/features/home/data/models/technology_category_model.dart';
 import 'package:route_it/features/home/data/repo/home_repo_impl.dart';
 import 'package:route_it/features/home/presentation/view_models/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
+import 'package:route_it/features/home/presentation/view_models/technology_cubit/technology_cubit.dart';
 import 'package:route_it/features/home/presentation/view_models/techology_categories_cubit.dart/technology_categories_cubit.dart';
-import 'package:route_it/features/home/presentation/views/tech_category_view.dart';
+import 'package:route_it/features/home/presentation/views/technology_category_view.dart';
 import 'package:route_it/features/home/presentation/views/home_view.dart';
 import 'package:route_it/features/home/presentation/views/technology_details_view.dart';
 import 'package:route_it/features/login/data/repos/login_repo_impl.dart';
@@ -48,17 +51,15 @@ abstract class AppRouter {
       //Register1
       GoRoute(
         path: kRegisterView1,
-        builder: (context, state) => MultiBlocProvider(
-            providers: [
-              BlocProvider<PasswordVisibilityCubit>(
-                  create: (context) => PasswordVisibilityCubit()),
-              BlocProvider(
-                create: (context) =>
-                    RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>()),
-                child: RegisterView1(),
-              ),
-            ],
-            child: RegisterView1()),
+        builder: (context, state) => MultiBlocProvider(providers: [
+          BlocProvider<PasswordVisibilityCubit>(
+              create: (context) => PasswordVisibilityCubit()),
+          BlocProvider(
+            create: (context) =>
+                RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>()),
+            child: RegisterView1(),
+          ),
+        ], child: RegisterView1()),
       ),
       //Register2
       GoRoute(
@@ -68,29 +69,42 @@ abstract class AppRouter {
       //Login
       GoRoute(
         path: kLoginView,
-        builder: (context, state) => MultiBlocProvider(
-            providers: [
-              BlocProvider<PasswordVisibilityCubit>(
-                  create: (context) => PasswordVisibilityCubit()),
-              BlocProvider(
-                create: (context) =>
-                    LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()),
-                child: LoginView(),
-              )
-            ],
-            child: LoginView()),
+        builder: (context, state) => MultiBlocProvider(providers: [
+          BlocProvider<PasswordVisibilityCubit>(
+              create: (context) => PasswordVisibilityCubit()),
+          BlocProvider(
+            create: (context) =>
+                LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()),
+            child: LoginView(),
+          )
+        ], child: LoginView()),
       ),
       GoRoute(
           path: kTechCategoryView,
-          pageBuilder: (context, state) => const CustomTransitionPage(
-              child: TechCategoryView(),
-              transitionsBuilder: CustomTransitions.fadeTransition)),
+          pageBuilder: (context, state) {
+            List<TechnologyCategoryModel> categoriesList =
+                state.extra as List<TechnologyCategoryModel>;
+            return CustomTransitionPage(
+                child: TechnologyCategoryView(
+                  categoriesList: categoriesList,
+                ),
+                transitionsBuilder: CustomTransitions.fadeTransition);
+          }),
       GoRoute(
-        path: kTechnologyDetailsView,
-        pageBuilder: (context, state) => const CustomTransitionPage(
-            child: TechnologyDetailsView(),
-            transitionsBuilder: CustomTransitions.slideFromRightTransition),
-      )
+          path: kTechnologyDetailsView,
+          pageBuilder: (context, state) {
+            TechnologyCategoryModel technologyCategoryModel =
+                state.extra as TechnologyCategoryModel;
+            return CustomTransitionPage(
+                child: BlocProvider(
+                  create: (context) =>
+                      TechnologyCubit(homeRepo: getIt.get<HomeRepoImpl>()),
+                  child: TechnologyDetailsView(
+                    technologyCategoryModel: technologyCategoryModel,
+                  ),
+                ),
+                transitionsBuilder: CustomTransitions.slideFromRightTransition);
+          })
     ],
   );
 }
