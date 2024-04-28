@@ -7,7 +7,7 @@ abstract class Register2Repo{
     required String email ,
     required String image,
     required String birthDate,
-    required bool itStudent,
+    required String itStudent,
     required String university,
     required String bio,});
 }

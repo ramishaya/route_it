@@ -20,7 +20,7 @@ class CustomDatePicker extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: secondaryColor.withOpacity(0.3),
+              color: darkPrimaryColor.withOpacity(0.3),
               blurRadius: 40,
               offset: const Offset(0, 10),
             ),
@@ -49,16 +49,33 @@ class CustomDatePicker extends StatelessWidget {
                 fontStyle: FontStyle.normal,
                 fontSize: 15),
           ),
-          onTap: (){
-            showDatePicker(
+          // onTap: (){
+          //   showDatePicker(
+          //     context: context,
+          //     initialDate: DateTime.parse('2007-01-01'),
+          //     firstDate: DateTime.parse('1980-01-01'),
+          //     lastDate: DateTime.parse('2007-12-30'),
+          //   ).then((value) {
+          //     // print(DateFormat.yMMMd().format(value!));
+          //     print(dateController.text);
+          //     print(dateController.text);
+          //     print(dateController.text);
+          //     print(dateController.text);
+          //     dateController.text = DateFormat.yMMMd().format(value!);
+          //   });
+          // },
+          onTap: () async {
+            final selectedDate = await showDatePicker(
               context: context,
               initialDate: DateTime.parse('2007-01-01'),
               firstDate: DateTime.parse('1980-01-01'),
               lastDate: DateTime.parse('2007-12-30'),
-            ).then((value) {
-              // print(DateFormat.yMMMd().format(value!));
-              dateController.text = DateFormat.yMMMd().format(value!);
-            });
+            );
+
+            if (selectedDate != null) {
+              final formattedDate = DateFormat.yMMMd().format(selectedDate);
+              dateController.text = formattedDate;
+            }
           },
         ),
       ),

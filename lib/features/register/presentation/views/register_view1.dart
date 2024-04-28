@@ -18,11 +18,10 @@ import 'package:route_it/features/register/presentation/view_models/register_cub
 
 class RegisterView1 extends StatelessWidget {
   RegisterView1({super.key});
-
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var confirmationPasswordController = TextEditingController();
+  static var nameController = TextEditingController();
+  static var emailController = TextEditingController();
+  static var passwordController = TextEditingController();
+  static var confirmationPasswordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -149,12 +148,13 @@ class RegisterView1 extends StatelessWidget {
                                 height: size.height * 0.05,
                                 function: () {
                                   if (formKey.currentState!.validate()) {
-                                    BlocProvider.of<RegisterCubit>(context).register(
-                                            name: nameController.text,
-                                            email: emailController.text,
-                                            password: passwordController.text,
-                                            passpasswordConfirmation: confirmationPasswordController.text
-                                    );
+                                    // BlocProvider.of<RegisterCubit>(context).register(
+                                    //         name: nameController.text,
+                                    //         email: emailController.text,
+                                    //         password: passwordController.text,
+                                    //         passpasswordConfirmation: confirmationPasswordController.text
+                                    // );
+                                    GoRouter.of(context).push(AppRouter.kRegisterView2);
                                   }
                                 },
                                 text: "Next",

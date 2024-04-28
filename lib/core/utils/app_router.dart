@@ -82,6 +82,9 @@ abstract class AppRouter {
               BlocProvider(
                   create: (context) => Register2Cubit(register2repo: getIt.get<Register2RepoImpl>()),
               ),
+              BlocProvider(
+                  create: (context) => RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>()),
+              )
             ],
             child: const RegisterView2(),
         ),

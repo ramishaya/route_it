@@ -4,10 +4,12 @@ import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/features/register/presentation/view_models/radio_cubit/radio_cubit.dart';
 
 class CustomRadioList extends StatelessWidget {
-  const CustomRadioList({super.key,required this.options, required this.size});
+  const CustomRadioList({super.key,required this.options, required this.size, required this.controllers});
 
   final List<String> options;
   final double size;
+  // final ScrollController controller;
+  final List<TextEditingController> controllers;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class CustomRadioList extends StatelessWidget {
           height: size,
           child: ListView.builder(
             itemCount: options.length,
+            // controller: controller,
             itemBuilder: (context, index) {
               return RadioListTile(
                 title: Text(options[index]),
@@ -25,6 +28,12 @@ class CustomRadioList extends StatelessWidget {
                 groupValue: RadioCubit.get(context).currentIndex,
                 onChanged: (value) {
                   RadioCubit.get(context).changeRadioIndex(value ?? 0);
+                  controllers[index].text = options[index];
+                  // print(controllers[index].text);
+                  // print(controllers[index].text);
+                  // print(controllers[index].text);
+                  // print(controllers[index].text);
+                  // print(controllers[index].text);
                 },
               );
             },

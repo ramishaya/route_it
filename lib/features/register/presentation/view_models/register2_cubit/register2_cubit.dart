@@ -18,7 +18,7 @@ class Register2Cubit extends Cubit<Register2State> {
       {required String email,
       String image = AssetsData.profileImg,
       required String birthDate,
-      required bool itStudent,
+      required String itStudent,
       required String university,
       String bio = ""}) async {
     emit(Register2Loading());
