@@ -9,7 +9,6 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
   ImagePickerCubit() : super(ImagePickerInitial());
   static ImagePickerCubit get(context) => BlocProvider.of(context);
 
-
   File? selectedImage;
 
   Future pickImageFromGallery() async{

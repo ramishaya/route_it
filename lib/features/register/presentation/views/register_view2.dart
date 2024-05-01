@@ -26,7 +26,6 @@ class RegisterView2 extends StatelessWidget {
       TextEditingController(),
       TextEditingController(),
     ];
-    var formKey = GlobalKey<FormState>();
 
     return BlocConsumer<Register2Cubit , Register2State>(
       listener: (context , state){},
@@ -49,103 +48,100 @@ class RegisterView2 extends StatelessWidget {
                 child: Scaffold(
                   backgroundColor: Colors.transparent,
                   body: SingleChildScrollView(
-                    child: Form(
-                      key: formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: size.height * .03,
-                          ),
-                          const CustomImagePicker(),
-                          SizedBox(
-                            height: size.height * .01,
-                          ),
-                          CustomDatePicker(
-                            dateController: dateController,
-                          ),
-                          SizedBox(
-                            height: size.height * .01,
-                          ),
-                          CustomOutlinedTextField(
-                            controller: bioController,
-                            hintText: 'Type some details about you....',
-                          ),
-                          SizedBox(
-                            height: size.height * .01,
-                          ),
-                          CustomRadioList(
-                            controllers: isStudentController,
-                            size: size.height * .13,
-                            options: const [
-                              "I am an IT student.",
-                              "I am not an IT student.",
-                            ],
-                          ),
-                          BlocBuilder<RadioCubit, RadioState>(
-                            builder: (context, state) {
-                              return Visibility(
-                                // visible: RadioCubit.get(context).isMenuVisibilty,
-                                visible: RadioCubit.get(context).currentIndex == 0
-                                    ? true
-                                    : false,
-                                maintainState: true,
-                                maintainAnimation: true,
-                                maintainSize: false,
-                                replacement: Container(),
-                                child: CustomDropdownMenu(
-                                  controller: collegeController,
-                                  size: size.height * .21,
-                                ),
-                              );
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: size.height * .03,
+                        ),
+                        const CustomImagePicker(),
+                        SizedBox(
+                          height: size.height * .01,
+                        ),
+                        CustomDatePicker(
+                          dateController: dateController,
+                        ),
+                        SizedBox(
+                          height: size.height * .01,
+                        ),
+                        CustomOutlinedTextField(
+                          controller: bioController,
+                          hintText: 'Type some details about you....',
+                        ),
+                        SizedBox(
+                          height: size.height * .01,
+                        ),
+                        CustomRadioList(
+                          controllers: isStudentController,
+                          size: size.height * .13,
+                          options: const [
+                            "I am an IT student.",
+                            "I am not an IT student.",
+                          ],
+                        ),
+                        BlocBuilder<RadioCubit, RadioState>(
+                          builder: (context, state) {
+                            return Visibility(
+                              // visible: RadioCubit.get(context).isMenuVisibilty,
+                              visible: RadioCubit.get(context).currentIndex == 0
+                                  ? true
+                                  : false,
+                              maintainState: true,
+                              maintainAnimation: true,
+                              maintainSize: false,
+                              replacement: Container(),
+                              child: CustomDropdownMenu(
+                                controller: collegeController,
+                                size: size.height * .21,
+                              ),
+                            );
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: CustomButtonItem(
+                            function: () {
+                                BlocProvider.of<RegisterCubit>(context).register(
+                                  name: RegisterView1.nameController.text,
+                                  email: RegisterView1.emailController.text,
+                                  password: RegisterView1.passwordController.text,
+                                  passpasswordConfirmation: RegisterView1.confirmationPasswordController.text,
+                                );
+
+                                BlocProvider.of<Register2Cubit>(context).completeRegister(
+                                  email: RegisterView1.emailController.text,
+                                  birthDate: dateController.text,
+                                  bio: bioController.text,
+                                  itStudent: isStudentController.toString(),
+                                  university: collegeController.text,
+                                );
                             },
+                            text: "sign up",
+                            width: double.infinity,
+                            height: 50,
+                            radius: 10,
+                            textColor: darkPrimaryColor,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: CustomButtonItem(
-                              function: () {
-                                if(formKey.currentState!.validate()){
-                                  BlocProvider.of<RegisterCubit>(context).register(
-                                    name: RegisterView1.nameController.text,
-                                    email: RegisterView1.emailController.text,
-                                    password: RegisterView1.passwordController.text,
-                                    passpasswordConfirmation: RegisterView1.confirmationPasswordController.text,
-                                  );
-                                  BlocProvider.of<Register2Cubit>(context).completeRegister(
-                                    email: RegisterView1.emailController.text,
-                                    birthDate: dateController.text,
-                                    itStudent: isStudentController.toString(),
-                                    university: collegeController.text,
-                                  );
-                                }
-                              },
-                              text: "sign up",
-                              width: double.infinity,
-                              height: 50,
-                              radius: 10,
-                              textColor: darkPrimaryColor,
-                            ),
-                          ),
-                          // BlocProvider(
-                          //   create: (context) => RadioCubit(),
-                          //   child: BlocBuilder<RadioCubit , RadioState>(
-                          //       builder : (context , state) {
-                          //         late Widget widget;
-                          //         if(RadioCubit.get(context).getCurrentIndex() == 0){
-                          //           widget = CustomDropdownMenu(
-                          //             controller: collegeController,
-                          //             size: size.height * .35,
-                          //           );
-                          //         }else if(RadioCubit.get(context).getCurrentIndex() == 1){
-                          //           widget = Container();
-                          //         }
-                          //         return widget ;
-                          //       },
-                          //   ),
-                          // ),
-                        ],
-                      ),
+                        ),
+                        // BlocProvider(
+                        //   create: (context) => RadioCubit(),
+                        //   child: BlocBuilder<RadioCubit , RadioState>(
+                        //       builder : (context , state) {
+                        //         late Widget widget;
+                        //         if(RadioCubit.get(context).getCurrentIndex() == 0){
+                        //           widget = CustomDropdownMenu(
+                        //             controller: collegeController,
+                        //             size: size.height * .35,
+                        //           );
+                        //         }else if(RadioCubit.get(context).getCurrentIndex() == 1){
+                        //           widget = Container();
+                        //         }
+                        //         return widget ;
+                        //       },
+                        //   ),
+                        // ),
+                      ],
                     ),
                   ),
                 ),

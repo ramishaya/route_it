@@ -22,8 +22,13 @@ class CustomImagePicker extends StatelessWidget {
               child: SizedBox(
                 height: 200,
                 width: 200,
-                child: Image.file(
-                    ImagePickerCubit.get(context).selectedImage ?? File(AssetsData.profileImg),
+                child: ImagePickerCubit.get(context).selectedImage != null ?
+                Image.file(
+                    ImagePickerCubit.get(context).selectedImage!,
+                  fit: BoxFit.cover,
+                ) :
+                Image.asset(
+                    AssetsData.profileImg,
                   fit: BoxFit.cover,
                 ),
               ),
