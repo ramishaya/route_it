@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_router.dart';
+import 'package:route_it/core/utils/cache_services.dart';
+import 'package:route_it/core/widgets/custom_back_button2.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
 import 'package:route_it/core/widgets/custom_loading_item.dart';
 import 'package:route_it/core/widgets/custom_text_field_item.dart';
@@ -16,8 +18,8 @@ import 'package:route_it/core/widgets/custom_toast.dart';
 import 'package:route_it/features/login/presentation/view_models/password_visibility_cubit/password_visibility_cubit.dart';
 import 'package:route_it/features/register/presentation/view_models/register_cubit/register_cubit.dart';
 
-class RegisterView1 extends StatelessWidget {
-  RegisterView1({super.key});
+class RegisterView extends StatelessWidget {
+  RegisterView({super.key});
 
   var nameController = TextEditingController();
   var emailController = TextEditingController();
@@ -31,11 +33,17 @@ class RegisterView1 extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSucces) {
-          //showToast(state.response.message ?? "", ToastState.SUCCESS);
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+          CacheServices.saveData(
+              key: "token", value: state.response.userWithToken!.token);
+          showToast(state.response.message ?? "", ToastState.SUCCESS);
+
+          GoRouter.of(context).push(AppRouter.kEmailVerificationView);
         } else if (state is RegisterFailure) {
-          //showToast(state.errMessage, ToastState.ERROR);
-          // GoRouter.of(context).push(AppRouter.kHomeView);
+          if (state.errMessage.contains("login")) {
+            showToast(state.errMessage, ToastState.ERROR);
+            GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+          }
+          showToast(state.errMessage, ToastState.ERROR);
         }
       },
       builder: (context, state) {
@@ -52,7 +60,7 @@ class RegisterView1 extends StatelessWidget {
           child: Scaffold(
               backgroundColor: Colors.transparent,
               body: Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: EdgeInsets.all(size.width * 0.07),
                 child: Center(
                   child: SingleChildScrollView(
                     child: Form(
@@ -61,9 +69,9 @@ class RegisterView1 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Create new account",
+                            "Create new Account",
                             style: TextStyle(
-                                color: lightPrimaryColor,
+                                color: Colors.white,
                                 fontSize: 45,
                                 fontWeight: FontWeight.w400),
                             textAlign: TextAlign.center,
@@ -81,7 +89,7 @@ class RegisterView1 extends StatelessWidget {
                                 }
                                 return null;
                               },
-                              hint: "FIRST NAME",
+                              hint: "NAME",
                               prefix: Iconsax.user),
                           SizedBox(
                             height: size.height * .01,
@@ -96,27 +104,40 @@ class RegisterView1 extends StatelessWidget {
                                 }
                                 return null;
                               },
-                              hint: "LAST NAME",
+                              hint: "Email",
                               prefix: Iconsax.personalcard),
                           SizedBox(
                             height: size.height * .01,
                           ),
-                          CustomTextFieldItem(
-                              controller: passwordController,
-                              type: TextInputType.emailAddress,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  // return 'Please Enter Your Email Address !';
-                                  return '';
-                                }
-                                return null;
-                              },
-                              hint: "EMAIL",
-                              prefix: Iconsax.message),
+                          BlocBuilder<PasswordVisibilityCubit,
+                                  PasswordVisibilityState>(
+                              builder: (context, state) => CustomTextFieldItem(
+                                    controller: passwordController,
+                                    type: TextInputType.visiblePassword,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        // return 'Password is too Short !';
+                                        return '';
+                                      }
+                                      return null;
+                                    },
+                                    hint: "Password",
+                                    prefix: Iconsax.lock,
+                                    suffix: PasswordVisibilityCubit.get(context)
+                                        .suffix,
+                                    suffixPressed: () {
+                                      PasswordVisibilityCubit.get(context)
+                                          .changePasswordVisibility();
+                                    },
+                                    isPassword:
+                                        PasswordVisibilityCubit.get(context)
+                                            .isPassword,
+                                  )),
                           SizedBox(
                             height: size.height * .01,
                           ),
-                          BlocBuilder<PasswordVisibilityCubit, PasswordVisibilityState>(
+                          BlocBuilder<PasswordVisibilityCubit,
+                                  PasswordVisibilityState>(
                               builder: (context, state) => CustomTextFieldItem(
                                     controller: confirmationPasswordController,
                                     type: TextInputType.visiblePassword,
@@ -127,13 +148,17 @@ class RegisterView1 extends StatelessWidget {
                                       }
                                       return null;
                                     },
-                                    hint: "PASSWORD",
+                                    hint: "Password Confirmation",
                                     prefix: Iconsax.lock,
-                                    suffix: PasswordVisibilityCubit.get(context).suffix,
+                                    suffix: PasswordVisibilityCubit.get(context)
+                                        .suffix,
                                     suffixPressed: () {
-                                      PasswordVisibilityCubit.get(context).changePasswordVisibility();
+                                      PasswordVisibilityCubit.get(context)
+                                          .changePasswordVisibility();
                                     },
-                                    isPassword: PasswordVisibilityCubit.get(context).isPassword,
+                                    isPassword:
+                                        PasswordVisibilityCubit.get(context)
+                                            .isPassword,
                                   )),
                           SizedBox(
                             height: size.height * .03,
@@ -149,12 +174,14 @@ class RegisterView1 extends StatelessWidget {
                                 height: size.height * 0.05,
                                 function: () {
                                   if (formKey.currentState!.validate()) {
-                                    BlocProvider.of<RegisterCubit>(context).register(
+                                    BlocProvider.of<RegisterCubit>(context)
+                                        .register(
                                             name: nameController.text,
                                             email: emailController.text,
                                             password: passwordController.text,
-                                            passpasswordConfirmation: confirmationPasswordController.text
-                                    );
+                                            passpasswordConfirmation:
+                                                confirmationPasswordController
+                                                    .text);
                                   }
                                 },
                                 text: "Next",
@@ -173,17 +200,18 @@ class RegisterView1 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
-                                'I already have an account',
+                                'Have an Account?',
                                 style: TextStyle(
-                                    color: lightPrimaryColor, fontSize: 15),
+                                    color: Colors.white, fontSize: 15),
                               ),
                               SizedBox(width: size.width * .01),
                               CustomTextButtonItem(
                                 function: () {
-                                  GoRouter.of(context).push(AppRouter.kLoginView);
+                                  GoRouter.of(context)
+                                      .pushReplacement(AppRouter.kLoginView);
                                 },
                                 text: 'login',
-                                color: secondaryColor,
+                                color: Colors.white,
                               ),
                             ],
                           ),

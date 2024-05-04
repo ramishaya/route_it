@@ -59,7 +59,7 @@ class HomeWelcomeCard extends StatelessWidget {
               height: size.height * 0.05,
               function: () {},
               text: "Start",
-              backgroundColor: Colors.white,
+              backgroundColor: primaryColor,
             )
           ]),
     );

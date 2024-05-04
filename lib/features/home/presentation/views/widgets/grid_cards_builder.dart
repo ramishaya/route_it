@@ -31,6 +31,10 @@ class GridCardsBuilder extends StatelessWidget {
               GoRouter.of(context)
                   .push(AppRouter.kTechCategoryView, extra: categoriesList);
             }
+            if (index == 0 || index == 1 || index == 2) {
+              GoRouter.of(context).push(AppRouter.kTechnologyDetailsView,
+                  extra: categoriesList[index]);
+            }
           },
           child: CategoryCard(
             technologyCategoryModel: categoriesList,

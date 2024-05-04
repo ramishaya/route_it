@@ -52,3 +52,11 @@ class UserInfo {
     updatedAt = json['updated_at'];
   }
 }
+
+class CompleteRegisterModel {
+  String? message;
+  CompleteRegisterModel({required this.message});
+  CompleteRegisterModel.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+  }
+}

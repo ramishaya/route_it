@@ -11,9 +11,9 @@ class TechnologyCubit extends Cubit<TechnologyState> {
 
   HomeRepo homeRepo;
 
-  Future<void> fetchAllTechologies() async {
+  Future<void> fetchAllTechologies({required int id}) async {
     emit(TechnologyLoading());
-    var response = await homeRepo.fetchTechnologies();
+    var response = await homeRepo.fetchTechnologies(id: id);
 
     response.fold(
       (failure) {

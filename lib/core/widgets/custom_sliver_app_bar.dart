@@ -15,6 +15,7 @@ class CustomSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       pinned: true,
+      surfaceTintColor: Colors.transparent,
       title: Text(
         title,
         style: const TextStyle(fontSize: 25),

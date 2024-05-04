@@ -16,6 +16,7 @@ class HomeView extends StatelessWidget {
     Iconsax.profile_2user,
   ];
 
+
   final List<Widget> navPages = const [
     HomeViewBody(),
     Center(child: Text("Hello")),

@@ -65,14 +65,20 @@ class CustomButtomNavBar extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  width: size.width * .2125,
-                  alignment: Alignment.center,
-                  child: Icon(
-                    listOfIcons[index],
-                    size: size.width * .076,
-                    color: index == currentIndex ? Colors.white : Colors.grey,
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: size.width * .2125,
+                      alignment: Alignment.center,
+                      child: Icon(
+                        listOfIcons[index],
+                        size: size.width * .076,
+                        color:
+                            index == currentIndex ? Colors.white : Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

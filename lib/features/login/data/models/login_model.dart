@@ -1,42 +1,31 @@
-// ignore_for_file: prefer_collection_literals
-
 class LoginModel {
-  String? message;
-  Success? success;
+  Data? data;
 
-  LoginModel({this.message, this.success});
+  LoginModel({this.data});
 
   LoginModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    success =
-        json['success'] != null ? Success.fromJson(json['success']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['message'] = message;
-    if (success != null) {
-      data['success'] = success!.toJson();
-    }
-    return data;
+    data = json['data'] != null ?  Data.fromJson(json['data']) : null;
   }
 }
 
-class Success {
+class Data {
   String? token;
   String? name;
+  String? message;
 
-  Success({this.token, this.name});
+  Data({this.token, this.name, this.message});
 
-  Success.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     name = json['name'];
+    message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['token'] = token;
-    data['name'] = name;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['token'] = this.token;
+    data['name'] = this.name;
+    data['message'] = this.message;
     return data;
   }
 }

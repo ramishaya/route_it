@@ -5,15 +5,14 @@ import 'package:route_it/core/utils/app_theme.dart';
 import 'package:route_it/core/utils/bloc_observer.dart';
 import 'package:route_it/core/utils/cache_services.dart';
 import 'package:route_it/core/utils/service_locator.dart';
-import 'package:route_it/features/home/data/repo/home_repo_impl.dart';
+import 'package:route_it/features/roadmaps/data/repos/roadmap_repo_impl.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await CacheServices.init();
   setupServiceLocator();
-  getIt.get<HomeRepoImpl>().fetchTechnologies();
-
+  getIt.get<RoadMapRepoImpl>().fetchRoadMapSkills(roadMapId: 2);
   String? token = CacheServices.getData(key: "token");
   Object? widget;
 

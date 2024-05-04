@@ -9,20 +9,24 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
   ImagePickerCubit() : super(ImagePickerInitial());
   static ImagePickerCubit get(context) => BlocProvider.of(context);
 
-
-  File? selectedImage;
-
-  Future pickImageFromGallery() async{
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if(image == null) return;
-    selectedImage = File(image.path);
-    emit(ChangeImagePicker());
+  final ImagePicker _picker = ImagePicker();
+  Future<void> pickImage() async {
+    try {
+      final XFile? pickedFile =
+          await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        emit(ImagePickerSuccess(File(pickedFile.path)));
+      } else {
+        // ignore: avoid_print
+        print('No image selected.');
+        emit(ImagePickerFailure());
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Failed to pick image: $e');
+      emit(ImagePickerFailure());
+    }
   }
 
-  Future pickImageFromCamera() async{
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if(image == null) return;
-    selectedImage = File(image.path);
-    emit(ChangeImagePicker());
-  }
+
 }

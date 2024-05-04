@@ -14,17 +14,18 @@ const Color secondaryColor = Color(0XFF3F51B5);
 
 const Color textOnPrimaryColor = Colors.white;
 
-const Color errorColor = Colors.red;
+const Color errorColor = Colors.pink;
 
 const Color warningColor = Colors.amberAccent;
 
 // const Color titleColor = Colors.white;
 
 const Color subTitleColor = Colors.grey;
-
 List<Color> cardColors = const [
-  Color(0XFF554484),
-  Color(0XFF008398),
-  Color(0XFF0063a2),
-  Color(0XFF004082)
+  Color(0xFF554484), // Existing purple
+  Color(0xFF008398), // Existing teal
+  Color(0xFF0063a2), // Existing blue
+  Color(0xFF004082), // Existing dark blue
+  Color(0xFF752a90), // New deeper purple
+  Color(0xFF0097a7), // New light teal
 ];

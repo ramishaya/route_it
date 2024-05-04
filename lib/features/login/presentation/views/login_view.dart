@@ -29,12 +29,16 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          //showToast(state.info.message ?? "", ToastState.SUCCESS);
+          showToast(state.info.data!.message ?? "", ToastState.SUCCESS);
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-          CacheServices.saveData(key: "token", value: state.info.success!.token);
-        }
-        else if(state is LoginFailure){
-          //showToast(state.errMessage, ToastState.ERROR);
+        } else if (state is LoginFailure) {
+          showToast(state.errMessage, ToastState.ERROR);
+          if (state.errMessage.contains("complete")) {
+            GoRouter.of(context).push(AppRouter.kCompleteRegisterView);
+          }
+          if (state.errMessage.contains("verification")) {
+            GoRouter.of(context).push(AppRouter.kRegisterView);
+          }
         }
       },
       builder: (context, state) {
@@ -44,10 +48,10 @@ class LoginView extends StatelessWidget {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    darkPrimaryColor,
-                    primaryColor,
-                    secondaryColor2,
-                  ])),
+                darkPrimaryColor,
+                primaryColor,
+                secondaryColor2,
+              ])),
           child: Scaffold(
               backgroundColor: Colors.transparent,
               body: Padding(
@@ -62,7 +66,7 @@ class LoginView extends StatelessWidget {
                           const Text(
                             "Login now",
                             style: TextStyle(
-                                color: lightPrimaryColor,
+                                color: Colors.white,
                                 fontSize: 45,
                                 fontWeight: FontWeight.w400),
                             textAlign: TextAlign.center,
@@ -85,49 +89,53 @@ class LoginView extends StatelessWidget {
                           SizedBox(
                             height: size.height * .01,
                           ),
-                          BlocBuilder<PasswordVisibilityCubit , PasswordVisibilityState>(
-                              builder: (context , state) => CustomTextFieldItem(
-                                controller: passwordController,
-                                type: TextInputType.visiblePassword,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    // return 'Password is too Short !';
-                                    return '';
-                                  }
-                                  return null;
-                                },
-                                hint: "PASSWORD",
-                                prefix: Iconsax.lock,
-                                suffix: PasswordVisibilityCubit.get(context).suffix,
-                                suffixPressed: (){
-                                  PasswordVisibilityCubit.get(context).changePasswordVisibility();
-                                },
-                                isPassword: PasswordVisibilityCubit.get(context).isPassword,
-                              ),
+                          BlocBuilder<PasswordVisibilityCubit,
+                              PasswordVisibilityState>(
+                            builder: (context, state) => CustomTextFieldItem(
+                              controller: passwordController,
+                              type: TextInputType.visiblePassword,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  // return 'Password is too Short !';
+                                  return '';
+                                }
+                                return null;
+                              },
+                              hint: "PASSWORD",
+                              prefix: Iconsax.lock,
+                              suffix:
+                                  PasswordVisibilityCubit.get(context).suffix,
+                              suffixPressed: () {
+                                PasswordVisibilityCubit.get(context)
+                                    .changePasswordVisibility();
+                              },
+                              isPassword: PasswordVisibilityCubit.get(context)
+                                  .isPassword,
+                            ),
                           ),
                           SizedBox(
                             height: size.height * .03,
                           ),
                           ConditionalBuilder(
-                              condition: state is! LoginLoading,
-                              builder: (context){
-                                return CustomButtonItem(
-                                  textColor: textOnPrimaryColor,
-                                  radius: 10,
-                                  backgroundColor: darkPrimaryColor,
-                                  width: double.infinity,
-                                  height: size.height * 0.05,
-                                  function: () {
-                                    if(formKey.currentState!.validate()){
-                                      BlocProvider.of<LoginCubit>(context).login(
-                                          email: emailController.text,
-                                          password: passwordController.text);
-                                    }
-                                  },
-                                  text: "sign in",
-                                );
-                              },
-                              fallback: (context) => const CustomLoadingItem(),
+                            condition: state is! LoginLoading,
+                            builder: (context) {
+                              return CustomButtonItem(
+                                textColor: textOnPrimaryColor,
+                                radius: 10,
+                                backgroundColor: darkPrimaryColor,
+                                width: double.infinity,
+                                height: size.height * 0.05,
+                                function: () {
+                                  if (formKey.currentState!.validate()) {
+                                    BlocProvider.of<LoginCubit>(context).login(
+                                        email: emailController.text,
+                                        password: passwordController.text);
+                                  }
+                                },
+                                text: "sign in",
+                              );
+                            },
+                            fallback: (context) => const CustomLoadingItem(),
                           ),
                           SizedBox(
                             height: size.height * .04,
@@ -142,18 +150,31 @@ class LoginView extends StatelessWidget {
                               const Text(
                                 'Don\'t have an account ? ',
                                 style: TextStyle(
-                                    color: lightPrimaryColor, fontSize: 15),
+                                    color: Colors.white, fontSize: 15),
                               ),
                               SizedBox(width: size.width * .01),
                               CustomTextButtonItem(
                                 function: () {
-                                  GoRouter.of(context).push(AppRouter.kRegisterView1);
+                                  GoRouter.of(context)
+                                      .push(AppRouter.kRegisterView);
                                 },
                                 text: 'register',
-                                color: secondaryColor,
+                                color: Colors.white,
                               ),
                             ],
                           ),
+                          SizedBox(
+                            height: size.height * .02,
+                          ),
+                           CustomTextButtonItem(
+                                function: () {
+                                  GoRouter.of(context)
+                                      .push(AppRouter.kForgetPasswordView);
+                                },
+                                text: 'Reset Password',
+                                color: Colors.white,
+                              ),
+                         
                         ],
                       ),
                     ),

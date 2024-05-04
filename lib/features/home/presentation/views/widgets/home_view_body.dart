@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:route_it/constants.dart';
 import 'package:route_it/core/utils/app_colors.dart';
 import 'package:route_it/core/utils/app_styles.dart';
-import 'package:route_it/core/widgets/custom_error_item.dart';
 import 'package:route_it/features/home/presentation/view_models/techology_categories_cubit.dart/technology_categories_cubit.dart';
 import 'package:route_it/features/home/presentation/views/widgets/grid_cards_builder.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
@@ -81,8 +80,7 @@ class HomeViewBody extends StatelessWidget {
                         ],
                       );
                     } else if (state is TechnologyCategoriesFailure) {
-                      return CustomErrorItem(
-                          errorMessage: state.errMessage, size: size);
+                      return CustomErrorWidget(errormessage: state.errMessage,);
                     } else {
                       return HomeShimmer(size: size);
                     }
@@ -92,6 +90,31 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CustomErrorWidget extends StatelessWidget {
+  const CustomErrorWidget({
+    super.key, required this.errormessage,
+  });
+final String errormessage;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+            size: 100,
+          ),
+          Text(
+            'Oops... something went wrong $errormessage}',
+          ),
+        ],
       ),
     );
   }

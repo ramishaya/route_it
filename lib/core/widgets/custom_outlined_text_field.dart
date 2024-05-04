@@ -17,32 +17,29 @@ class CustomOutlinedTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: TextFormField(
-        controller: controller,
-        style: const TextStyle(
-          color: lightPrimaryColor
+    return TextFormField(
+      controller: controller,
+      style: const TextStyle(
+        color: Colors.white
+      ),
+      cursorColor: secondaryColor2,
+      textAlign: TextAlign.center,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(vertical: 40, horizontal: 12.0),
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          color: lightPrimaryColor,
         ),
-        cursorColor: secondaryColor2,
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 40, horizontal: 12.0),
-          hintText: hintText,
-          hintStyle: const TextStyle(
-            color: lightPrimaryColor,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: outlineColor,
+            width: outlineWidth,
           ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: outlineColor,
-              width: outlineWidth,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: secondaryColor,
-              width: outlineWidth,
-            ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: secondaryColor,
+            width: outlineWidth,
           ),
         ),
       ),

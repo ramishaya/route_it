@@ -27,8 +27,10 @@ class RegisterCubit extends Cubit<RegisterState> {
         password: password,
         passpasswordConfirmation: passpasswordConfirmation);
 
-    finalResponse.fold(
-        (failure) => emit(RegisterFailure(errMessage: failure.errMessage)),
-        (success) => emit(RegisterSucces(response: success)));
+    finalResponse.fold((failure) {
+      print("we are printing in the register cubitttt");
+      print(failure.errMessage);
+      emit(RegisterFailure(errMessage: failure.errMessage));
+    }, (success) => emit(RegisterSucces(response: success)));
   }
 }

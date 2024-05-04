@@ -41,3 +41,14 @@ class UserWithToken {
     return data;
   }
 }
+
+class AlreadyExist {
+  String? message;
+  AlreadyExist({this.message});
+  AlreadyExist.fromJson(Map<String, dynamic> json) {
+    message = json["message"];
+  }
+}
+
+
+
