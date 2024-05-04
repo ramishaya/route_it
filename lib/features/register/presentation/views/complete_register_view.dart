@@ -117,13 +117,13 @@ class CompleteRegisterView extends StatelessWidget {
                         SizedBox(
                           height: size.height * .03,
                         ),
-                        CustomRadioList(
-                          size: size.height * .13,
-                          options: const [
-                            "I am an IT student.",
-                            "I am not an IT student.",
-                          ],
-                        ),
+                        // CustomRadioList(
+                        //   size: size.height * .13,
+                        //   options: const [
+                        //     "I am an IT student.",
+                        //     "I am not an IT student.",
+                        //   ],
+                        // ),
                         // BlocBuilder<RadioCubit, RadioState>(
                         //   builder: (context, state) {
                         //     return Visibility(
