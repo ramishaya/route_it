@@ -1,18 +1,16 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_router.dart';
-import 'package:route_it/core/utils/app_styles.dart';
-import 'package:route_it/core/utils/assets_data.dart';
-import 'package:route_it/core/utils/cache_services.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/router/app_router.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
+import 'package:route_it/core/utils/constants/assets_data.dart';
+import 'package:route_it/core/utils/local_storage/cache_services.dart';
 import 'package:route_it/core/widgets/custom_back_button2.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
 import 'package:route_it/core/widgets/custom_date_picker.dart';
 import 'package:route_it/core/widgets/custom_outlined_text_field.dart';
-import 'package:route_it/core/widgets/custom_radio_list.dart';
 import 'package:route_it/core/widgets/custom_toast.dart';
 import 'package:route_it/features/register/presentation/view_models/complete_register_cubit/complete_register_cubit.dart';
 import 'package:route_it/features/register/presentation/view_models/image_picker_cubit/image_picker_cubit.dart';
@@ -46,9 +44,9 @@ class CompleteRegisterView extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                darkPrimaryColor,
-                primaryColor,
-                secondaryColor2,
+               AppColors. darkPrimaryColor,
+               AppColors. primaryColor,
+               AppColors. secondaryColor2,
               ],
             ),
           ),
@@ -94,7 +92,7 @@ class CompleteRegisterView extends StatelessWidget {
                                           as ImageProvider<Object>),
                               const CircleAvatar(
                                 radius: 12,
-                                backgroundColor: primaryColor,
+                                backgroundColor:AppColors. primaryColor,
                                 child: Icon(Icons.edit,
                                     size: 14, color: Colors.white),
                               ),
@@ -146,20 +144,17 @@ class CompleteRegisterView extends StatelessWidget {
                           height: size.height * .03,
                         ),
                         CustomButtonItem(
-                          backgroundColor: darkPrimaryColor,
+                          backgroundColor:AppColors. darkPrimaryColor,
                           function: () {
                             BlocProvider.of<CompleteRegisterCubit>(context)
                                 .completeRegister(
-                                    email: "ramishaiya8@gmail.com",
                                     profileImage: state is ImagePickerSuccess
                                         ? state.image
                                         : File(""),
-                                    birthDate: "dateController.text",
-                                    //! هون عم ابعثها ثابتة لان وسيم البغل مو زابطة عندو
+                                    birthDate: "2000-01-01",
                                     isItStudent: "1",
-                                    //!  هون أرجع زبط الدرب دون كيف ما بدك خويي أني علقتا لان عم تعمل   أوفرفلو
-                                    university: "university damas",
-                                    bio: " bioController.text");
+                                    university: "Aleppo University",
+                                    bio: "Dont's have a bio yet");
                           },
                           text: "Complete Register",
                           width: double.infinity,

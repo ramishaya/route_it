@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/constants.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
 import 'package:shimmer/shimmer.dart';
 
 class FrameWorkCardsShimmer extends StatelessWidget {

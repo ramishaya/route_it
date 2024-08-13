@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:route_it/core/utils/app_router.dart';
+import 'package:route_it/core/utils/router/app_router.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton(

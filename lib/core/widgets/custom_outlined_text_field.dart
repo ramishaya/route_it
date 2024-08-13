@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 class CustomOutlinedTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -11,7 +11,7 @@ class CustomOutlinedTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    this.outlineColor = darkPrimaryColor,
+    this.outlineColor = AppColors.darkPrimaryColor,
     this.outlineWidth = 3.0,
   });
 
@@ -22,13 +22,13 @@ class CustomOutlinedTextField extends StatelessWidget {
       style: const TextStyle(
         color: Colors.white
       ),
-      cursorColor: secondaryColor2,
+      cursorColor: AppColors.secondaryColor2,
       textAlign: TextAlign.center,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 40, horizontal: 12.0),
         hintText: hintText,
         hintStyle: const TextStyle(
-          color: lightPrimaryColor,
+          color: AppColors.lightPrimaryColor,
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -38,7 +38,7 @@ class CustomOutlinedTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: secondaryColor,
+            color: AppColors.secondaryColor,
             width: outlineWidth,
           ),
         ),

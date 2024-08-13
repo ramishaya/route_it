@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_router.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/router/app_router.dart';
 import 'package:route_it/core/widgets/custom_back_button2.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
 import 'package:route_it/core/widgets/custom_loading_item.dart';
@@ -51,9 +51,9 @@ class _ResetPasswordCodeViewState extends State<ResetPasswordCodeView> {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                darkPrimaryColor,
-                primaryColor,
-                secondaryColor2,
+               AppColors. darkPrimaryColor,
+               AppColors. primaryColor,
+               AppColors. secondaryColor2,
               ])),
           child: Scaffold(
             appBar: AppBar(
@@ -120,7 +120,7 @@ class _ResetPasswordCodeViewState extends State<ResetPasswordCodeView> {
                             });
                           },
                           numberOfFields: 6,
-                          fillColor: lightPrimaryColor.withOpacity(0.1),
+                          fillColor:AppColors. lightPrimaryColor.withOpacity(0.1),
                           filled: true,
                           keyboardType: TextInputType.number,
                         ),
@@ -131,9 +131,9 @@ class _ResetPasswordCodeViewState extends State<ResetPasswordCodeView> {
                           condition: state is! ResetPasswordCodeLoading,
                           builder: (context) {
                             return CustomButtonItem(
-                              textColor: textOnPrimaryColor,
+                              textColor:AppColors. textOnPrimaryColor,
                               radius: 10,
-                              backgroundColor: darkPrimaryColor,
+                              backgroundColor: AppColors.darkPrimaryColor,
                               width: double.infinity,
                               height: size.height * 0.05,
                               function: () {

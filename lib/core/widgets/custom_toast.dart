@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 void showToast(String txt, ToastState toastState) => Fluttertoast.showToast(
     msg: txt,
@@ -23,10 +23,10 @@ Color chooseToastColor(ToastState state) {
       color = Colors.green.withOpacity(.6);
       break;
     case ToastState.ERROR:
-      color = errorColor.withOpacity(.6);
+      color = AppColors.errorColor.withOpacity(.6);
       break;
     case ToastState.WARNING:
-      color = warningColor.withOpacity(.6);
+      color = AppColors.warningColor.withOpacity(.6);
       break;
   }
   return color;

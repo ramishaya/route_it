@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 class CustomDatePicker extends StatelessWidget {
   const CustomDatePicker({super.key, required this.dateController});
@@ -14,11 +14,11 @@ class CustomDatePicker extends StatelessWidget {
       height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: darkPrimaryColor.withOpacity(.5),
+        color: AppColors.darkPrimaryColor.withOpacity(.5),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: secondaryColor.withOpacity(0.3),
+            color: AppColors.secondaryColor.withOpacity(0.3),
             blurRadius: 40,
             offset: const Offset(0, 10),
           ),
@@ -33,7 +33,7 @@ class CustomDatePicker extends StatelessWidget {
         cursorColor: Colors.transparent,
         cursorErrorColor: Colors.transparent,
         style: const TextStyle(
-            color: lightPrimaryColor, fontStyle: FontStyle.normal),
+            color: AppColors.lightPrimaryColor, fontStyle: FontStyle.normal),
         decoration: const InputDecoration(
           enabledBorder: InputBorder.none,
           disabledBorder: InputBorder.none,

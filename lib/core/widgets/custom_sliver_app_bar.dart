@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 import 'package:route_it/core/widgets/custom_back_button2.dart';
 import 'package:route_it/core/widgets/custom_shader_mask.dart';
 
@@ -22,7 +22,7 @@ class CustomSliverAppBar extends StatelessWidget {
       ),
       centerTitle: true,
       leading: const CustomBackButton2(),
-      backgroundColor: darkPrimaryColor,
+      backgroundColor: AppColors.darkPrimaryColor,
       expandedHeight: size.height * 0.18,
       stretch: true,
       flexibleSpace: FlexibleSpaceBar(
@@ -31,7 +31,7 @@ class CustomSliverAppBar extends StatelessWidget {
           StretchMode.zoomBackground,
         ],
         background: CustomShaderMasK(
-            fadeInColor: darkPrimaryColor,
+            fadeInColor: AppColors.darkPrimaryColor,
             imageUrl: img,
             width: size.width,
             height: size.height * 0.4),

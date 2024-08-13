@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 import 'package:route_it/core/widgets/gradient_background_painter.dart';
 import 'package:route_it/features/home/data/models/level_model.dart';
 
@@ -20,8 +20,8 @@ class LevelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // Create a dynamic selection of colors based on the index
     List<Color> gradientColors = [
-      cardColors[index % cardColors.length],
-      cardColors[(index + 1) % cardColors.length],
+      AppColors.cardColors[index % AppColors.cardColors.length],
+      AppColors.cardColors[(index + 1) % AppColors.cardColors.length],
     ];
 
     return Container(

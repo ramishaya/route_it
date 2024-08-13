@@ -2,12 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import 'package:route_it/core/errors/failures.dart';
-import 'package:route_it/core/utils/api_services.dart';
+import 'package:route_it/core/utils/dio/api_services.dart';
 import 'package:route_it/features/home/data/models/level_model.dart';
 import 'package:route_it/features/home/data/models/technologies_model.dart';
 import 'package:route_it/features/home/data/models/technology_category_model.dart';
 import 'package:route_it/features/home/data/repo/home_repo.dart';
-import 'package:route_it/core/utils/cache_services.dart';
+import 'package:route_it/core/utils/local_storage/cache_services.dart';
 
 class HomeRepoImpl implements HomeRepo {
   ApiService apiService;

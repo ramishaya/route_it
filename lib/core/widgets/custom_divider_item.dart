@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 class CustomDividerItem extends StatelessWidget {
   const CustomDividerItem({super.key});
@@ -13,7 +13,7 @@ class CustomDividerItem extends StatelessWidget {
       child: Container(
         width: 200,
         height: 1.0,
-        color: lightPrimaryColor,
+        color: AppColors.lightPrimaryColor,
       ),
     );
   }

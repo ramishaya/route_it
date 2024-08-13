@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_styles.dart';
-import 'package:route_it/core/utils/assets_data.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
+import 'package:route_it/core/utils/constants/assets_data.dart';
 import 'package:route_it/core/widgets/custom_loading_animation.dart';
 import 'dart:math' as math;
 
@@ -26,7 +26,7 @@ class CategoryCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(25)),
-        color: cardColors[index],
+        color: AppColors.cardColors[index],
       ),
       child: Stack(
         clipBehavior: Clip.antiAlias,

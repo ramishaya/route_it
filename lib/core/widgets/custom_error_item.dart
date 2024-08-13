@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_styles.dart';
-import 'package:route_it/core/utils/assets_data.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/helpers/helper_functions.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
+import 'package:route_it/core/utils/constants/assets_data.dart';
 
 class CustomErrorItem extends StatelessWidget {
   const CustomErrorItem(
-      {super.key, required this.errorMessage, required this.size});
+      {super.key, required this.errorMessage});
 
   final String errorMessage;
-  final Size size;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class CustomErrorItem extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-            darkPrimaryColor,
-            primaryColor,
-            secondaryColor2,
+            AppColors.darkPrimaryColor,
+            AppColors.primaryColor,
+            AppColors.secondaryColor2,
           ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -35,9 +35,9 @@ class CustomErrorItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-                margin: EdgeInsets.only(bottom: size.width * 0.1),
-                width: size.width * 0.5,
-                height: size.width * 0.5,
+                margin: EdgeInsets.only(bottom: HelperFunctions.screenWidth(context) * 0.1),
+                width: HelperFunctions.screenWidth(context) * 0.5,
+                height: HelperFunctions.screenWidth(context) * 0.5,
                 child: Image.asset(
                   AssetsData.errorImg,
                   fit: BoxFit.cover,

@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_styles.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
 import 'package:route_it/features/home/presentation/view_models/techology_categories_cubit.dart/technology_categories_cubit.dart';
 import 'package:route_it/features/home/presentation/views/widgets/grid_cards_builder.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_header.dart';
@@ -23,8 +23,8 @@ class HomeViewBody extends StatelessWidget {
         return BlocProvider.of<TechnologyCategoriesCubit>(context)
             .fetchAllCategories();
       },
-      color: primaryColor,
-      backgroundColor: lightPrimaryColor,
+      color: AppColors.primaryColor,
+      backgroundColor: AppColors.lightPrimaryColor,
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

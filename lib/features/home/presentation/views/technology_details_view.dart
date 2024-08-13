@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_styles.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
 import 'package:route_it/core/widgets/custom_back_button2.dart';
 import 'package:route_it/core/widgets/custom_error_item.dart';
 import 'package:route_it/core/widgets/custom_expandable_text.dart';
@@ -22,7 +22,7 @@ class TechnologyDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: darkPrimaryColor,
+      backgroundColor: AppColors.darkPrimaryColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
@@ -84,7 +84,7 @@ class TechnologyDetailsView extends StatelessWidget {
                     );
                   } else if (state is TechnologyFailure) {
                     return CustomErrorItem(
-                        errorMessage: state.errMessage, size: size);
+                        errorMessage: state.errMessage);
                   } else {
                     return FrameWorkCardsShimmer(size: size);
                   }

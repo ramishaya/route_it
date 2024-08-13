@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 import 'package:route_it/features/home/presentation/view_models/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:route_it/features/home/presentation/views/widgets/home_view_body.dart';
 
@@ -40,8 +40,8 @@ class HomeView extends StatelessWidget {
                   center: const Alignment(-0.5, -0.3),
                   //focal: Alignment.topLeft,
                   colors: [
-                    primaryColor,
-                    darkPrimaryColor.withOpacity(0.5),
+                    AppColors.primaryColor,
+                    AppColors.darkPrimaryColor.withOpacity(0.5),
                   ])),
           child: Scaffold(
             extendBodyBehindAppBar: true,

@@ -1,12 +1,12 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 class CustomButtonItem extends StatelessWidget {
   const CustomButtonItem(
       {super.key,
-      this.backgroundColor = darkPrimaryColor,
+      this.backgroundColor = AppColors.darkPrimaryColor,
       required this.function,
       required this.text,
       required this.width,
@@ -32,7 +32,7 @@ class CustomButtonItem extends StatelessWidget {
       child: MaterialButton(
         splashColor: Colors.transparent,
         focusColor: Colors.transparent,
-        highlightColor: primaryColor,
+        highlightColor: AppColors.primaryColor,
         onPressed: () {
           function();
         },
@@ -47,7 +47,7 @@ class CustomButtonItem extends StatelessWidget {
         color: backgroundColor,
         boxShadow: [
           BoxShadow(
-            color: primaryColor.withOpacity(0.1),
+            color: AppColors.primaryColor.withOpacity(0.1),
             spreadRadius: 2,
             blurRadius: 4,
             offset: const Offset(0, 3),

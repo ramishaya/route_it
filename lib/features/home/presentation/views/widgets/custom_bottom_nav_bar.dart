@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 import 'package:route_it/features/home/presentation/view_models/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 
 class CustomButtomNavBar extends StatelessWidget {
@@ -22,7 +22,7 @@ class CustomButtomNavBar extends StatelessWidget {
       margin: EdgeInsets.all(size.width * horizintalMargin),
       height: size.width * .155,
       decoration: BoxDecoration(
-        color: darkPrimaryColor,
+        color: AppColors.darkPrimaryColor,
         boxShadow: [
           BoxShadow(
             //! reset the shadow color later

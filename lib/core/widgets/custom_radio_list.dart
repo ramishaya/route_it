@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 import 'package:route_it/features/register/presentation/view_models/radio_cubit/radio_cubit.dart';
 
 class CustomRadioList extends StatelessWidget {
@@ -24,7 +24,7 @@ class CustomRadioList extends StatelessWidget {
               return RadioListTile(
                 title: Text(options[index]),
                 value: index,
-                activeColor: secondaryColor2,
+                activeColor: AppColors.secondaryColor2,
                 groupValue: RadioCubit.get(context).currentIndex,
                 onChanged: (value) {
                   RadioCubit.get(context).changeRadioIndex(value ?? 0);

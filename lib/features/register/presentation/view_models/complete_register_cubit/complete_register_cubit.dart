@@ -13,15 +13,13 @@ class CompleteRegisterCubit extends Cubit<CompleteRegisterState> {
   final RegisterRepo registerRepo;
 
   Future<void> completeRegister(
-      {required String email,
-      required File profileImage,
+      {required File profileImage,
       required String birthDate,
-      required  String isItStudent,
+      required String isItStudent,
       required String university,
       required String bio}) async {
     emit(CompleteRegisterLoading());
     var finalResponse = await registerRepo.completeRegister(
-        email: email,
         profileImage: profileImage,
         birthDate: birthDate,
         isItStudent: isItStudent,
