@@ -1,8 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:route_it/features/company/data/models/company_profile_model.dart';
-import 'package:route_it/features/company/data/repos/company_repo_impl.dart';
-import 'package:route_it/features/competition/data/repos/competition_repo_impl.dart';
 import 'package:route_it/features/search/data/repos/search__repo_impl.dart';
 import 'package:route_it/route_it.dart';
 import 'package:route_it/core/utils/router/app_router.dart';
