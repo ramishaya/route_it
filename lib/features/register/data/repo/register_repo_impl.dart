@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:route_it/core/errors/failures.dart';
-import 'package:route_it/core/utils/api_services.dart';
-import 'package:route_it/core/utils/cache_services.dart';
+import 'package:route_it/core/utils/dio/api_services.dart';
+import 'package:route_it/core/utils/local_storage/cache_services.dart';
 import 'package:route_it/features/register/data/models/complete_register_model.dart';
 import 'package:route_it/features/register/data/models/register_model.dart';
 import 'package:route_it/features/register/data/models/verification_code.dart';
@@ -35,7 +35,8 @@ class RegisterRepoImpl implements RegisterRepo {
     } catch (e) {
       if (e is DioException) {
         if (e.response!.statusCode == 409) {
-          return Left(ServerFailure("You already have an account. Please login"));
+          return Left(
+              ServerFailure("You already have an account. Please login"));
         }
         return (Left(ServerFailure.fromDioError(e)));
       } else {
@@ -52,7 +53,11 @@ class RegisterRepoImpl implements RegisterRepo {
           endpoint: "checkEmailVerificationCode",
           data: {"code": verificationCode},
           bearerToken: CacheServices.getData(key: "token"));
+
       VerificationCodeModel response = VerificationCodeModel.fromJson(data);
+      print(
+          "${response.message} :  user is varifing its email and it is scuccess");
+      print("this is the token : ${CacheServices.getData(key: "token")} ");
 
       return Right(response);
     } catch (e) {
@@ -66,8 +71,7 @@ class RegisterRepoImpl implements RegisterRepo {
 
   @override
   Future<Either<Failure, CompleteRegisterModel>> completeRegister(
-      {required String email,
-      required File profileImage,
+      {required File profileImage,
       required String birthDate,
       required String isItStudent,
       required String university,
@@ -75,7 +79,6 @@ class RegisterRepoImpl implements RegisterRepo {
     try {
       String imageName = profileImage.path.split('/').last;
       FormData formData = FormData.fromMap({
-        "email": email,
         "image": await MultipartFile.fromFile(profileImage.path,
             filename: imageName),
         "birth_date": birthDate,
@@ -87,16 +90,14 @@ class RegisterRepoImpl implements RegisterRepo {
           endpoint: "completeRegister",
           data: formData,
           bearerToken: CacheServices.getData(key: "token"));
-
-      print(data.toString());
+      
       CompleteRegisterModel response = CompleteRegisterModel.fromJson(data);
-      print("we have completed the registerrrrr" + response.message!);
+     
       return Right(response);
     } catch (e) {
-      print("error in the complete regiisyter repositoryyyyy" + e.toString());
+      // ignore: avoid_print
+      print("error in the complete Register Repository$e");
       if (e is DioException) {
-        print(
-            "error   in the complete regiisyter repositoryyyyy" + e.toString());
         return Left(ServerFailure.fromDioError(e));
       } else {
         return Left(ServerFailure(e.toString()));

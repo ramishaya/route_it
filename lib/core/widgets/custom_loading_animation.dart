@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 class CustomLoadingAnimation extends StatefulWidget {
   const CustomLoadingAnimation({super.key});
@@ -86,9 +86,9 @@ class MyPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint Circle_1 = Paint()..color = lightPrimaryColor;
+    Paint Circle_1 = Paint()..color = AppColors.lightPrimaryColor;
 
-    Paint Circle_2 = Paint()..color = primaryColor;
+    Paint Circle_2 = Paint()..color = AppColors.primaryColor;
 
     canvas.drawCircle(Offset(size.width * .5, size.height * .5),
         size.width * Radius_1, Circle_1);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/assets_data.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/constants/assets_data.dart';
 import 'package:route_it/features/home/data/models/technology_category_model.dart';
 import 'package:route_it/features/home/presentation/views/widgets/categories_builder.dart';
 import 'package:route_it/core/widgets/custom_sliver_app_bar.dart';
@@ -15,7 +15,7 @@ class TechnologyCategoryView extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: darkPrimaryColor,
+        backgroundColor: AppColors.darkPrimaryColor,
         extendBodyBehindAppBar: true,
         body: CustomScrollView(
           physics: const BouncingScrollPhysics(),

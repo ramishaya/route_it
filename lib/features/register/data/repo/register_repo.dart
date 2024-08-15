@@ -18,7 +18,7 @@ abstract class RegisterRepo {
 
   Future<Either<Failure, CompleteRegisterModel>> completeRegister(
       {
-      required String email,
+      
       required File profileImage,
       required String birthDate,
       required String isItStudent,

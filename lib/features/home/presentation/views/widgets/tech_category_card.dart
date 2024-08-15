@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_router.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/router/app_router.dart';
 
 import 'dart:math' as math;
 
@@ -31,7 +31,7 @@ class TechCategoryCard extends StatelessWidget {
         width: size.width,
         height: size.height * 0.13,
         decoration: BoxDecoration(
-            color: cardColors[index % cardColors.length],
+            color: AppColors.cardColors[index % AppColors.cardColors.length],
             borderRadius: BorderRadius.circular(15)),
         margin: EdgeInsets.only(bottom: size.width * 0.05),
         child: Stack(

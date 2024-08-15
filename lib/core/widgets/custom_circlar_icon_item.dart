@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 class CustomCirclarIconItem extends StatelessWidget {
   CustomCirclarIconItem({super.key, required this.function , this.icon});
@@ -15,11 +15,11 @@ class CustomCirclarIconItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       splashColor: Colors.transparent,
       focusColor: Colors.transparent,
-      highlightColor: lightPrimaryColor,
+      highlightColor: AppColors.lightPrimaryColor,
       onTap: function,
       child: CircleAvatar(
         radius: 20,
-        backgroundColor: lightPrimaryColor,
+        backgroundColor: AppColors.lightPrimaryColor,
         child: icon,
       ),
     );

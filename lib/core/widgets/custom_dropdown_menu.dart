@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 import 'package:route_it/features/register/presentation/view_models/menu_cubit/menu_cubit.dart';
 
 class CustomDropdownMenu extends StatelessWidget {
@@ -30,11 +30,11 @@ class CustomDropdownMenu extends StatelessWidget {
                     height: MenuCubit.get(context).changeMenuHeight(),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: darkPrimaryColor.withOpacity(.5),
+                      color: AppColors.darkPrimaryColor.withOpacity(.5),
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       boxShadow: [
                         BoxShadow(
-                          color: darkPrimaryColor.withOpacity(0.3),
+                          color: AppColors.darkPrimaryColor.withOpacity(0.3),
                           blurRadius: 20,
                           offset: const Offset(0, 10),
                         ),
@@ -48,7 +48,7 @@ class CustomDropdownMenu extends StatelessWidget {
                               style: const TextStyle(
                                 letterSpacing: 1.5,
                                 fontWeight: FontWeight.w600,
-                                color: lightPrimaryColor,
+                                color: AppColors.lightPrimaryColor,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 15,
                               ),
@@ -91,7 +91,7 @@ class CustomDropdownMenu extends StatelessWidget {
                                               style: const TextStyle(
                                                   letterSpacing: 1.5,
                                                   fontWeight: FontWeight.w600,
-                                                  color: lightPrimaryColor,
+                                                  color: AppColors.lightPrimaryColor,
                                                   fontStyle: FontStyle.normal,
                                                   fontSize: 15,
                                               ),

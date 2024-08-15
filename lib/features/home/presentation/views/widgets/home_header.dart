@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:route_it/core/utils/app_styles.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
 import 'package:route_it/core/widgets/custom_circlar_icon_item.dart';
-import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/constants/app_colors.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader(
@@ -29,7 +29,7 @@ class HomeHeader extends StatelessWidget {
             Text(
               userName,
               style: const TextStyle(
-                color: textOnPrimaryColor,
+                color: AppColors.textOnPrimaryColor,
                 fontSize: MyTextStyles.subTitleSize,
               ),
             ),

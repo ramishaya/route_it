@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_styles.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
 
 class CustomExpandableText extends StatelessWidget {
   final String? content;
@@ -135,7 +135,7 @@ class SeeMoreLessWidget extends StatelessWidget {
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
               fontSize: 14.0,
-              color: lightPrimaryColor,
+              color: AppColors.lightPrimaryColor,
             ),
             textAlign: TextAlign.start,
             TextSpan(
@@ -147,7 +147,7 @@ class SeeMoreLessWidget extends StatelessWidget {
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     fontSize: 14.0,
-                    color: lightPrimaryColor,
+                    color: AppColors.lightPrimaryColor,
                   ),
                 ),
                 const WidgetSpan(
@@ -160,7 +160,7 @@ class SeeMoreLessWidget extends StatelessWidget {
                     (type == 1)
                         ? Icons.keyboard_arrow_down
                         : Icons.keyboard_arrow_up,
-                    color: lightPrimaryColor,
+                    color: AppColors.lightPrimaryColor,
                     size: 17.5,
                   ),
                 ),

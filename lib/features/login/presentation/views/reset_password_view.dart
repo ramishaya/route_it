@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_router.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/router/app_router.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
 import 'package:route_it/core/widgets/custom_divider_item.dart';
 import 'package:route_it/core/widgets/custom_loading_item.dart';
@@ -46,9 +46,9 @@ class ResetPasswordView extends StatelessWidget {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                darkPrimaryColor,
-                primaryColor,
-                secondaryColor2,
+               AppColors. darkPrimaryColor,
+              AppColors.  primaryColor,
+              AppColors.  secondaryColor2,
               ])),
           child: Scaffold(
               backgroundColor: Colors.transparent,
@@ -145,9 +145,9 @@ class ResetPasswordView extends StatelessWidget {
                             condition: state is! ResetPasswordLoading,
                             builder: (context) {
                               return CustomButtonItem(
-                                textColor: textOnPrimaryColor,
+                                textColor: AppColors.textOnPrimaryColor,
                                 radius: 10,
-                                backgroundColor: darkPrimaryColor,
+                                backgroundColor: AppColors.darkPrimaryColor,
                                 width: double.infinity,
                                 height: size.height * 0.05,
                                 function: () {

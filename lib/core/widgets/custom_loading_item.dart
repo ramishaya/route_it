@@ -2,7 +2,7 @@
 
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:route_it/core/utils/app_colors.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
 
 class CustomLoadingItem extends StatefulWidget {
   const CustomLoadingItem({super.key});
@@ -159,7 +159,7 @@ class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint myArc = Paint()
-      ..color = secondaryColor2
+      ..color = AppColors.secondaryColor2
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5
       ..strokeCap = StrokeCap.round;

@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/app_router.dart';
-import 'package:route_it/core/utils/app_styles.dart';
-import 'package:route_it/core/utils/assets_data.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/router/app_router.dart';
+import 'package:route_it/core/utils/styles/app_styles.dart';
+import 'package:route_it/core/utils/constants/assets_data.dart';
 import 'package:route_it/core/widgets/custom_back_button2.dart';
 import 'package:route_it/core/widgets/custom_error_item.dart';
 import 'package:route_it/core/widgets/custom_expandable_text.dart';
@@ -25,7 +25,7 @@ class FrameWorkDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: darkPrimaryColor,
+      backgroundColor: AppColors.darkPrimaryColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,7 @@ class FrameWorkDetailsView extends StatelessWidget {
                     top: size.height * 0.057,
                     left: size.width * horizintalMargin,
                     child: CircleAvatar(
-                        backgroundColor: lightPrimaryColor.withOpacity(0.35),
+                        backgroundColor: AppColors.lightPrimaryColor.withOpacity(0.35),
                         child: const Center(child: CustomBackButton2())))
               ],
             ),
@@ -115,7 +115,7 @@ class FrameWorkDetailsView extends StatelessWidget {
                         );
                       } else if (state is LevelFailure) {
                         return CustomErrorItem(
-                            errorMessage: state.errMessage, size: size);
+                            errorMessage: state.errMessage, );
                       } else {
                         return LevelCardsShimmer(size: size);
                       }

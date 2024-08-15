@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:route_it/constants.dart';
-import 'package:route_it/core/utils/app_colors.dart';
-import 'package:route_it/core/utils/assets_data.dart';
+import 'package:route_it/core/utils/constants/constants_numbers.dart';
+import 'package:route_it/core/utils/constants/app_colors.dart';
+import 'package:route_it/core/utils/constants/assets_data.dart';
 import 'package:route_it/core/widgets/custom_button_item.dart';
 
 class HomeWelcomeCard extends StatelessWidget {
@@ -24,7 +24,7 @@ class HomeWelcomeCard extends StatelessWidget {
               // colorFilter: ColorFilter.mode(lightPrimaryColor, BlendMode.dstOver),
               image: AssetImage(AssetsData.welcomeImg),
               fit: BoxFit.cover),
-          color: lightPrimaryColor,
+          color: AppColors.lightPrimaryColor,
           borderRadius: BorderRadius.circular(10)),
       child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -53,13 +53,13 @@ class HomeWelcomeCard extends StatelessWidget {
               ),
             ),
             CustomButtonItem(
-              textColor: textOnPrimaryColor,
+              textColor: AppColors.textOnPrimaryColor,
               radius: 10,
               width: size.width * 0.267,
               height: size.height * 0.05,
               function: () {},
               text: "Start",
-              backgroundColor: primaryColor,
+              backgroundColor: AppColors.primaryColor,
             )
           ]),
     );

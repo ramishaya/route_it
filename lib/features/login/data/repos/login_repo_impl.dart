@@ -3,8 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import 'package:route_it/core/errors/failures.dart';
-import 'package:route_it/core/utils/api_services.dart';
-import 'package:route_it/core/utils/cache_services.dart';
+import 'package:route_it/core/utils/dio/api_services.dart';
+import 'package:route_it/core/utils/local_storage/cache_services.dart';
 import 'package:route_it/features/login/data/models/forget_password_model.dart';
 import 'package:route_it/features/login/data/models/login_model.dart';
 import 'package:route_it/features/login/data/models/reset_password_code_model.dart';
@@ -24,6 +24,7 @@ class LoginRepoImpl implements LoginRepo {
 
       LoginModel response = LoginModel.fromJson(data);
       CacheServices.saveData(key: "token", value: response.data!.token);
+      CacheServices.saveData(key: "userName", value: response.data!.name);
 
       return (Right(response));
     } catch (e) {

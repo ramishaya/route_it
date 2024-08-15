@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:route_it/core/utils/app_router.dart';
+import 'package:route_it/core/utils/router/app_router.dart';
 import 'package:route_it/features/home/presentation/views/widgets/category_card.dart';
 
 import '../../../data/models/technology_category_model.dart';
