@@ -139,7 +139,7 @@ abstract class AppRouter {
 
       GoRoute(
           path: kEmailVerificationView,
-          pageBuilder: (context, state) {
+          pageBuilder: (context,state) {
             return CustomTransitionPage(
                 child: BlocProvider(
                   create: (context) => EmailVerificationCodeCubit(

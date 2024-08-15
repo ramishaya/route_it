@@ -781,6 +781,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+<<<<<<< HEAD
   slide_to_act:
     dependency: "direct main"
     description:
@@ -789,6 +790,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+=======
+>>>>>>> 1af84645cd09eca2109e2c1dfb3cb11862ae4a27
   smooth_page_indicator:
     dependency: "direct main"
     description:
